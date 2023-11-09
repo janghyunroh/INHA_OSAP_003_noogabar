@@ -17,8 +17,8 @@ AVL Tree 및 이를 활용한 Set STL 구현
 
 
 ### 기타 사항
-License: 
-Style Guide: CSE3210
+License: Apache-2.0 license   
+Style Guide: CSE3210   
 Code Format: clang-format
 
 ## 주요 기능
