@@ -2,14 +2,14 @@
 #define AVL_H
 
 struct Node {
-  int data;
-  Node *left;
-  Node *right;
+  int key_;
+  Node *left_;
+  Node *right_;
 };
 
 class AVLTree {
 public:
-  Node *root;
+  Node *root_;
   AVLTree();
   int Height(Node *node) {}
   int HeightDiff(Node *node) {}
