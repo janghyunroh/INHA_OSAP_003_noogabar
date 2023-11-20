@@ -9,9 +9,7 @@ int Set::Rank(int arg) {
   if (node == nullptr)
     return {0, 0};
   int rank = CalculateRank(root_, arg) + 1;
-  int depth = Height(root_) - Height(node);
-  // int depth = Depth(arg);
-  return {depth, rank};
+  return rank;
 }
 
 // rank를 return하는 함수

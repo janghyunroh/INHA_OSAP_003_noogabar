@@ -24,8 +24,12 @@ protected:
   Set set_;
 };
 
-SizeRankTestFixture::SizeRankTestFixture() { std::cout << "Constructor called\n"; }
-SizeRankTestFixture::~SizeRankTestFixture() { std::cout << "Destructor called\n"; }
+SizeRankTestFixture::SizeRankTestFixture() {
+  std::cout << "Constructor called\n";
+}
+SizeRankTestFixture::~SizeRankTestFixture() {
+  std::cout << "Destructor called\n";
+}
 
 void SizeRankTestFixture::SetUpTestCase() {
   std::cout << "SetUpTestCase called\n";
@@ -45,22 +49,20 @@ void SizeRankTestFixture::SetUp() {
 
 void SizeRankTestFixture::TearDown() { std::cout << "TearDown called\n"; }
 
-TEST_F(SizeRankTestFixture, TestSize) {
-    ASSERT_EQ(4, set_.Size());
-}
+TEST_F(SizeRankTestFixture, TestSize) { ASSERT_EQ(4, set_.Size()); }
 
 TEST_F(SizeRankTestFixture, TestRank) {
-    ASSERT_EQ(1, set_.Rank(1));
-    ASSERT_EQ(2, set_.Rank(3));
-    ASSERT_EQ(3, set_.Rank(5));
-    ASSERT_EQ(4, set_.Rank(9));
+  ASSERT_EQ(1, set_.Rank(1));
+  ASSERT_EQ(2, set_.Rank(3));
+  ASSERT_EQ(3, set_.Rank(5));
+  ASSERT_EQ(4, set_.Rank(9));
 }
 
 TEST_F(SizeRankTestFixture, TestRankNotExist) {
-    ASSERT_EQ(0, set_.set_.Rank(2));
+  ASSERT_EQ(0, set_.set_.Rank(2));
 }
 
-int main(int argc, char **argv){
+int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
