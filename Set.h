@@ -4,10 +4,10 @@
 #include "AVL.h"
 #include <utility>
 
-class Set {
+class Set : AVLTree {
 
 public:
-  Set(AVLTree *tree) : tree_(tree), size_(0) {}
+  Set() : size_(0) { tree_ = new AVLTree; }
   std::pair<int, int> Minimum(int arg) {}
   std::pair<int, int> Maximum(int arg) {}
   bool Empty() {}

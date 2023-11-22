@@ -1,3 +1,4 @@
+#include "../../../../usr/include/gtest/gtest.h"
 #include "Set.h"
 #include <gtest/gtest.h>
 #include <iostream>
@@ -58,9 +59,7 @@ TEST_F(SizeRankTestFixture, TestRank) {
   ASSERT_EQ(4, set_.Rank(9));
 }
 
-TEST_F(SizeRankTestFixture, TestRankNotExist) {
-  ASSERT_EQ(0, set_.set_.Rank(2));
-}
+TEST_F(SizeRankTestFixture, TestRankNotExist) { ASSERT_EQ(0, set_.Rank(2)); }
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
