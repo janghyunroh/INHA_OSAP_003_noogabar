@@ -7,7 +7,7 @@
 class Set : AVLTree {
 
 public:
-  Set(AVLTree * tree) : tree_(tree), size_(0) {}
+  Set(AVLTree *tree) : tree_(tree), size_(0) {}
   std::pair<int, int> Minimum(int arg) {}
   std::pair<int, int> Maximum(int arg) {}
   bool Empty() {}
