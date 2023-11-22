@@ -5,7 +5,8 @@
 #include <stdexcept>
 
 TEST(SizeTest, TestEmptySet) {
-  Set set;
+  AVLTree *avltree;
+  Set set(avltree);
 
   int size = set.Size();
 
@@ -14,30 +15,20 @@ TEST(SizeTest, TestEmptySet) {
 
 class SizeRankTestFixture : public ::testing::Test {
 public:
-  SizeRankTestFixture();
+  SizeRankTestFixture(AVLTree *avltree);
   virtual ~SizeRankTestFixture();
   void SetUp() override;
   void TearDown() override;
-  static void SetUpTestCase();
-  static void TearDownTestCase();
 
 protected:
   Set set_;
 };
 
-SizeRankTestFixture::SizeRankTestFixture() {
+SizeRankTestFixture::SizeRankTestFixture(AVLTree *avltree) : set_(avltree) {
   std::cout << "Constructor called\n";
 }
 SizeRankTestFixture::~SizeRankTestFixture() {
   std::cout << "Destructor called\n";
-}
-
-void SizeRankTestFixture::SetUpTestCase() {
-  std::cout << "SetUpTestCase called\n";
-}
-
-void SizeRankTestFixture::TearDownTestCase() {
-  std::cout << "TearDownTestCase called\n";
 }
 
 void SizeRankTestFixture::SetUp() {
@@ -48,7 +39,13 @@ void SizeRankTestFixture::SetUp() {
   set_.Insert(9);
 }
 
-void SizeRankTestFixture::TearDown() { std::cout << "TearDown called\n"; }
+void SizeRankTestFixture::TearDown() {
+  std::cout << "TearDown called\n";
+  set_.Erase(1);
+  set_.Erase(5);
+  set_.Erase(3);
+  set_.Erase(9);
+}
 
 TEST_F(SizeRankTestFixture, TestSize) { ASSERT_EQ(4, set_.Size()); }
 
