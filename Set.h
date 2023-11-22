@@ -14,7 +14,7 @@ public:
   int Size() {}
   int Find(int arg) {}
   int Insert(int arg) {}
-  std::pair<int, int> Rank(int arg) {}
+  int Rank(int arg) {}
   int Erase(int arg) {}
 
 private:
