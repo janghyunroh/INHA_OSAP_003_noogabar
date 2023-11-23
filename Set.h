@@ -4,7 +4,7 @@
 #include "AVL.h"
 #include <utility>
 
-class Set : AVLTree {
+class Set {
 
 public:
   Set(AVLTree *tree) : tree_(tree), size_(0) {}
