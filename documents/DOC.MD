@@ -1,16 +1,18 @@
 
 ##class Node
 데이터 멤버
-int data
+int key
 : 노드에 저장 되어있는 실제 데이터. 과제에서 이야기하는 key와 동일
 (혼란 방지를 위해 추후 이름 변경 고려할 것)
 
-int depth (구현 여부 추후 결정)
+int depth 
 : 노드의 tree에서의 depth   
 
 **고려 사항 - depth 데이터 멤버의 필요성 여부**
  depth 데이터 멤버를 사용하게 되면 특정 노드의 depth를 따로 계산할 필요 없이 즉각 lookup할 수 있어 여러 함수들이 꽤 빨라지게 된다(시간 복잡도는 동일). 그러나 AVL Tree의 balancing 과정에서 이 depth를 무결성이 깨지지 않도록 적절히 변경해주어야 한다는 점에서 추가적인 구현 비용이 들어간다. 
  depth 데이터 멤버를 사용하지 않는다면 height함수를 통해 구한 height값과 root의 height값의 차를 이용하여 depth를 구할 수 있지만 이렇게 한다면 log n의 시간 소모가 추가된다. 
+
+**결론적으로 depth 데이터 멤버 구현하기로 결정됨**
 
 멤버 메서드 
 – 없음
@@ -63,8 +65,6 @@ RL node	// O (1)
 
 ##class Set
 데이터 멤버
-AVLTree AVL_Tree	
-: Set의 내부에서 사용할 AVL Tree 데이터 멤버
 
 int size			
 : AVL Tree의 크기. insert / delete시 증감
