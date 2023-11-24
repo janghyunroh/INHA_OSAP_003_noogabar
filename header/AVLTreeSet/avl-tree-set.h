@@ -1,8 +1,7 @@
 #ifndef AVL_H
 #define AVL_H
 
-// #include "/INHA_OSAP_003_NOOGABAR/header/TreeSet/tree-set.h"
-#include "../TreeSet/tree-set.h"
+#include "INHA_OSAP_003_noogabar/header/TreeSet/tree-set.h"
 
 /**
  * 사용자 정의 소멸자 / 사용자 정의 복사 생성자 / 사용자 정의 대입 연산자

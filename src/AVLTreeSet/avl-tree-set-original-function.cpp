@@ -1,5 +1,5 @@
 
-#include "/INHA_OSAP_003_NOOGABAR/header/AVLTreeSet/avl-tree-set.h"
+#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
 #include <algorithm>
 
 using namespace std;

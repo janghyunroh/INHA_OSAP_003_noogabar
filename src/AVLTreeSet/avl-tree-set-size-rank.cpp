@@ -1,5 +1,4 @@
-//#include "/INHA_OSAP_003_NOOGABAR/header/AVLTreeSet/avl-tree-set.h"
-#include "../../header/AVLTreeSet/avl-tree-set.h"
+#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
 //담당자: 이정현
 
 /**

@@ -1,10 +1,8 @@
 #ifndef TREE_SET_H
 #define TREE_SET_H
 
-// #include "/INHA_OSAP_003_NOOGABAR/header/Node/node.h"
-// #include "/INHA_OSAP_003_NOOGABAR/header/Set/set.h"
-#include "../Node/node.h"
-#include "../Set/set.h"
+#include "INHA_OSAP_003_noogabar/header/Node/node.h"
+#include "INHA_OSAP_003_noogabar/header/Set/set.h"
 
 /**
  * @brief Set과 AVLTreeSet 사이의 중간 클래스

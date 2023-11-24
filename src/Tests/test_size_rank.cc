@@ -1,5 +1,4 @@
-//#include "/INHA_OSAP_003_noogabar/header/Set/set.h"
-#include "../../header/Set/set.h"
+#include "INHA_OSAP_003_noogabar/header/Set/set.h"
 #include <gtest/gtest.h>
 #include <iostream>
 #include <stdexcept>
@@ -77,9 +76,10 @@ void SizeRankTestFixture::TearDown() {
  * @brief set에 원소가 있을 때 size 함수 테스트
  *
  */
-TEST_F(SizeRankTestFixture, TestSize) { 
+TEST_F(SizeRankTestFixture, TestSize) {
   // 현재 4개의 원소가 삽입되어있으므로 기댓값은 4
-  EXPECT_EQ(4, set_.Size()); }
+  EXPECT_EQ(4, set_.Size());
+}
 
 /**
  * @brief rank 함수가 존재하는 원소를 인수로 받는 경우 테스트
@@ -98,9 +98,10 @@ TEST_F(SizeRankTestFixture, TestRank) {
  * @brief rank 함수가 존재하지 않는 원소를 인수로 받는 경우 테스트
  *
  */
-TEST_F(SizeRankTestFixture, TestRankNotExist) { 
+TEST_F(SizeRankTestFixture, TestRankNotExist) {
   // key를 2로 갖는 원소가 존재하지 않으므로 Rank(2)의 기댓값은 0
-  EXPECT_EQ(0, set_.Rank(2)); }
+  EXPECT_EQ(0, set_.Rank(2));
+}
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
