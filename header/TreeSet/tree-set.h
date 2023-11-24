@@ -1,8 +1,10 @@
 #ifndef TREE_SET_H
 #define TREE_SET_H
 
-#include "/INHA_OSAP_003_NOOGABAR/header/Node/node.h"
-#include "/INHA_OSAP_003_NOOGABAR/header/Set/set.h"
+// #include "/INHA_OSAP_003_NOOGABAR/header/Node/node.h"
+// #include "/INHA_OSAP_003_NOOGABAR/header/Set/set.h"
+#include "../Node/node.h"
+#include "../Set/set.h"
 
 /**
  * @brief Set과 AVLTreeSet 사이의 중간 클래스
@@ -17,7 +19,9 @@
  */
 template <typename T1, typename T2> class TreeSet : public Set {
 public:
-  Node<T1, T2> *getroot() { return this->root_; }  //짧은 getter이므로 그냥 여기서 구현했습니다.
+  Node<T1, T2> *getroot() {
+    return this->root_;
+  } //짧은 getter이므로 그냥 여기서 구현했습니다.
 
 private:
   Node<T1, T2> *root_;

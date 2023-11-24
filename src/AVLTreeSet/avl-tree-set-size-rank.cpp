@@ -1,5 +1,4 @@
-#include "/INHA_OSAP_003_NOOGABAR/header/AVLTreeSet/avl-tree-set.h"
-
+#include "../../header/AVLTreeSet/avl-tree-set.h"
 //담당자: 이정현
 
 /**
@@ -22,25 +21,32 @@ template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Size() {
 template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Rank(T1 arg) {
   Node *node = Search(arg);
   // tree에 노드가 없다면 0 return
-  if (node == nullptr)
-    return {0, 0};
-  int rank = CalculateRank(getroot(), arg) + 1;
+  if (node == nullptr) {
+    return 0;
+  }
+  // left child를 root로 하는 서브크기가 곧 해당 노드보다 작은 원소의 개수
+  int rank = GetNodeSize(node->left, arg) + 1;
   return rank;
 }
 
 //====================기타 구현 함수====================
 
-// rank를 return하는 함수
-// rank는 x보다 작은 수로 정의
+/**
+ * @brief node를 root로 하는 서브트리의 size를 구하는 함수
+ *
+ * @tparam T1
+ * @tparam T2
+ * @param node
+ * @param x
+ * @return int
+ */
 template <typename T1, typename T2>
-int AVLTreeSet<T1, T2>::CalculateRank(Node<T1, T2> *node, int x) {
-  if (!node)
+int AVLTreeSet<T1, T2>::GetNodeSize(Node<T1, T2> *node, int x) {
+  if (!node) {
     return 0;
-  int cnt = 0;
-  if (node->key < x) {
-    cnt++;
   }
-  cnt += CalculateRank(node->left, x);
-  cnt += CalculateRank(node->right, x);
+  int cnt = 1;
+  cnt += GetNodeSize(node->left, x);
+  cnt += GetNodeSize(node->right, x);
   return cnt;
 }
