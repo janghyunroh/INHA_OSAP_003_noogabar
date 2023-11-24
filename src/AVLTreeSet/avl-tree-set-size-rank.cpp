@@ -1,3 +1,4 @@
+//#include "/INHA_OSAP_003_NOOGABAR/header/AVLTreeSet/avl-tree-set.h"
 #include "../../header/AVLTreeSet/avl-tree-set.h"
 //담당자: 이정현
 
@@ -25,7 +26,7 @@ template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Rank(T1 arg) {
     return 0;
   }
   // left child를 root로 하는 서브크기가 곧 해당 노드보다 작은 원소의 개수
-  int rank = GetNodeSize(node->left, arg) + 1;
+  int rank = GetTreeSize(node->left) + 1;
   return rank;
 }
 
@@ -41,12 +42,12 @@ template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Rank(T1 arg) {
  * @return int
  */
 template <typename T1, typename T2>
-int AVLTreeSet<T1, T2>::GetNodeSize(Node<T1, T2> *node, int x) {
+int AVLTreeSet<T1, T2>::GetTreeSize(Node<T1, T2> *node) {
   if (!node) {
     return 0;
   }
   int cnt = 1;
-  cnt += GetNodeSize(node->left, x);
-  cnt += GetNodeSize(node->right, x);
+  cnt += GetTreeSize(node->left);
+  cnt += GetTreeSize(node->right);
   return cnt;
 }
