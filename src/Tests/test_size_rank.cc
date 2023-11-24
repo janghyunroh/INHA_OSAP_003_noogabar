@@ -8,7 +8,7 @@
  *
  */
 TEST(SizeTest, TestEmptySet) {
-  Set set;
+  Set<int, int> set;
 
   int size = set.Size();
 
@@ -27,7 +27,7 @@ public:
   void TearDown() override;
 
 protected:
-  Set set_;
+  Set<int, int> set_;
 };
 
 /**
@@ -91,9 +91,7 @@ TEST_F(SizeRankTestFixture, TestRank) {
  * @brief rank 함수가 존재하지 않는 원소를 인수로 받는 경우 테스트
  *
  */
-TEST_F(SizeRankTestFixture, TestRankNotExist) {
-  ASSERT_EQ(0, set_.set_.Rank(2));
-}
+TEST_F(SizeRankTestFixture, TestRankNotExist) { ASSERT_EQ(0, set_.Rank(2)); }
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
