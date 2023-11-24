@@ -1,6 +1,5 @@
-#include "/INHA_OSAP_003_NOOGABAR/header/AVLTreeSet/avl-tree-set.h"
+#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
 #include <iostream>
-
 
 /**
  * @brief 채점 서버용 main.cpp
@@ -25,7 +24,7 @@ int main() {
   while (T--) {
 
     //채점 서버에선 int형 자료만을 다룹니다.
-    //data는 아예 다루지 않지만 일단 int형으로 넣어주었습니다.
+    // data는 아예 다루지 않지만 일단 int형으로 넣어주었습니다.
     AVLTreeSet<int, int> avl_tree_set;
 
     cin >> Q;
