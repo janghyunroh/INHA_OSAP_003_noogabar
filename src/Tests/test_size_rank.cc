@@ -1,3 +1,4 @@
+//#include "/INHA_OSAP_003_noogabar/header/Set/set.h"
 #include "../../header/Set/set.h"
 #include <gtest/gtest.h>
 #include <iostream>
@@ -12,6 +13,7 @@ TEST(SizeTest, TestEmptySet) {
 
   int size = set.Size();
 
+  // set이 비어있으므로 기대값은 0
   EXPECT_EQ(0, size);
 }
 
@@ -52,6 +54,7 @@ SizeRankTestFixture::~SizeRankTestFixture() {
  */
 void SizeRankTestFixture::SetUp() {
   std::cout << "SetUp called\n";
+  // 테스트 전 1, 5, 3, 9를 차례로 set에 삽입
   set_.Insert(1);
   set_.Insert(5);
   set_.Insert(3);
@@ -74,24 +77,30 @@ void SizeRankTestFixture::TearDown() {
  * @brief set에 원소가 있을 때 size 함수 테스트
  *
  */
-TEST_F(SizeRankTestFixture, TestSize) { ASSERT_EQ(4, set_.Size()); }
+TEST_F(SizeRankTestFixture, TestSize) { 
+  // 현재 4개의 원소가 삽입되어있으므로 기댓값은 4
+  EXPECT_EQ(4, set_.Size()); }
 
 /**
  * @brief rank 함수가 존재하는 원소를 인수로 받는 경우 테스트
  *
  */
 TEST_F(SizeRankTestFixture, TestRank) {
-  ASSERT_EQ(1, set_.Rank(1));
-  ASSERT_EQ(2, set_.Rank(3));
-  ASSERT_EQ(3, set_.Rank(5));
-  ASSERT_EQ(4, set_.Rank(9));
+  // 현재 set에는 1, 3, 5, 9가 들어있고 1보다 작은 원소는 존재하지 않음
+  // 따라서 Rank(1)의 기댓값은 0 + 1 = 1
+  EXPECT_EQ(1, set_.Rank(1));
+  EXPECT_EQ(2, set_.Rank(3));
+  EXPECT_EQ(3, set_.Rank(5));
+  EXPECT_EQ(4, set_.Rank(9));
 }
 
 /**
  * @brief rank 함수가 존재하지 않는 원소를 인수로 받는 경우 테스트
  *
  */
-TEST_F(SizeRankTestFixture, TestRankNotExist) { ASSERT_EQ(0, set_.Rank(2)); }
+TEST_F(SizeRankTestFixture, TestRankNotExist) { 
+  // key를 2로 갖는 원소가 존재하지 않으므로 Rank(2)의 기댓값은 0
+  EXPECT_EQ(0, set_.Rank(2)); }
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
