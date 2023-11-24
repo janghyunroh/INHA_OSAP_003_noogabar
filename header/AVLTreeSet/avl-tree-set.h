@@ -42,7 +42,7 @@ public:
 
   // Rank 함수 구현 중 key값이 존재하지 않는 경우를 걸러내기 위해 한 단계 걸쳐
   // 구현
-  int GetNodeSize(Node<T1, T2> *node, int x) {}
+  int GetTreeSize(Node<T1, T2> *node) {}
 
   // Min/Max 함수 구현 중 key값이 존재하지 않는 경우를 걸러내기 위해 main에서 한
   // 단계 걸쳐 사용(내부에서 Search 사용)
