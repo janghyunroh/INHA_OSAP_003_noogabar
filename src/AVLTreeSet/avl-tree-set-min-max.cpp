@@ -3,7 +3,7 @@
 //담당자: 류지훈
 
 /**
- * @brief 최소 노드의 depth
+ * @brief arg를 key 값으로 가진 노드를 root로 하는 서브 트리 내에서 최소 key를 반환하는 함수
  *
  * @param arg
  * @return int
@@ -13,10 +13,18 @@
  *
  * 만약 해당 노드가 존재하지 않는 경우 NULL 반환
  */
-template <typename T1, typename T2> T1 AVLTreeSet<T1, T2>::Minimum(T1 arg) {}
+template <typename T1, typename T2> 
+T1 AVLTreeSet<T1, T2>::Minimum(T1 arg) {
+  Node *node = Search(arg);
+  while(node->getleft()){
+    node = node->getleft();
+  }
+  int minKey = node->getkey();
+  return minKey;
+}
 
 /**
- * @brief 최대 노드의 depth
+ * @brief arg를 key 값으로 가진 노드를 root로 하는 서브 트리 내에서 최대 key를 반환하는 함수
  *
  * @param arg
  * @return int
@@ -26,7 +34,15 @@ template <typename T1, typename T2> T1 AVLTreeSet<T1, T2>::Minimum(T1 arg) {}
  *
  * 만약 해당 노드가 존재하지 않는 경우 NULL 반환
  */
-template <typename T1, typename T2> T1 AVLTreeSet<T1, T2>::Maximum(T1 arg) {}
+template <typename T1, typename T2>
+T1 AVLTreeSet<T1, T2>::Maximum(T1 arg) {
+  Node *node = Search(arg);
+  while(node->getright()){
+    node = node->getright();
+  }
+  int maxKey = node->getkey();
+  return maxKey;
+}
 
 /**
  * @brief 특정 key값의 노드가 Set에 존재하는지 확인
