@@ -19,7 +19,7 @@ template <typename T1, typename T2> T1 AVLTreeSet<T1, T2>::Minimum(T1 arg) {
   while (node->getleft()) {
     node = node->getleft();
   }
-  int minKey = node->getkey();
+  T1 minKey = node->getkey();
   return minKey;
 }
 
@@ -40,7 +40,7 @@ template <typename T1, typename T2> T1 AVLTreeSet<T1, T2>::Maximum(T1 arg) {
   while (node->getright()) {
     node = node->getright();
   }
-  int maxKey = node->getkey();
+  T1 maxKey = node->getkey();
   return maxKey;
 }
 
@@ -52,14 +52,14 @@ template <typename T1, typename T2> T1 AVLTreeSet<T1, T2>::Maximum(T1 arg) {
  * @return true
  * @return false
  */
-template <typename T1, typename T2> bool AVLTreeSet<T1, T2>::Exists(T1 arg) {
-  Node *node = Search(arg);
-  if (node == nullptr)
-    return false;
-  return true;
+// template <typename T1, typename T2> bool AVLTreeSet<T1, T2>::Exists(T1 arg) {
+//   Node *node = Search(arg);
+//   if (node == nullptr)
+//     return false;
+//   return true;
 
-  //끝까지 못 찾아 nullptr에 도달한 경우
-  return false;
-}
+//끝까지 못 찾아 nullptr에 도달한 경우
+//  return false;
+//}
 
 //====================기타 구현 함수====================
