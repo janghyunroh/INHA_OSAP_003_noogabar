@@ -62,8 +62,9 @@ void MinMaxTestFixture::TearDown() {
  *
  */
 TEST_F(MinMaxTestFixture, TestMin) {
-  // key가 5, 3 인 노드가 root인 서브 트리의 leftmost 노드의 key 값의 기대값은
-  // 각각 4, 1 key가 1, 9, 4인 노드는 leaf 노드이므로 기댓값은 자기자신의 key 값
+  // key가 5, 3인 노드가 root인 서브 트리의 leftmost 노드의 key 값의 기대값은
+  // 각각 4, 1
+  // key가 1, 9, 4인 노드는 leaf 노드이므로 기댓값은 자기자신의 key 값
   EXPECT_EQ(1, set_.Minimum(1));
   EXPECT_EQ(4, set_.Minimum(5));
   EXPECT_EQ(1, set_.Minimum(3));
@@ -78,8 +79,9 @@ TEST_F(MinMaxTestFixture, TestMin) {
  *
  */
 TEST_F(MinMaxTestFixture, TestMax) {
-  // key가 5, 3 인 노드가 root인 서브 트리의 rightmost 노드의 key 값의 기대값은
-  // 9 key가 1, 9, 4인 노드는 leaf 노드이므로 기댓값은 자기자신의 key 값
+  // key가 5, 3ㄹ인 노드가 root인 서브 트리의 rightmost 노드의 key 값의 기대값은
+  // 9
+  // key가 1, 9, 4인 노드는 leaf 노드이므로 기댓값은 자기자신의 key 값
   EXPECT_EQ(1, set_.Maximum(1));
   EXPECT_EQ(9, set_.Maximum(5));
   EXPECT_EQ(9, set_.Maximum(3));
