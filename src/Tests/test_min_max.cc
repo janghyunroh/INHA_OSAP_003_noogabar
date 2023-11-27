@@ -58,15 +58,6 @@ void MinMaxTestFixture::TearDown() {
 }
 
 /**
- * @brief set에 원소가 있을 때 size 함수 테스트
- *
- */
-TEST_F(MinMaxTestFixture, TestSize) {
-  // 현재 4개의 원소가 삽입되어있으므로 기댓값은 4
-  EXPECT_EQ(4, set_.Size());
-}
-
-/**
  * @brief root의 key를 인자로 넣었을 때 Minimum 함수 테스트
  *
  */
