@@ -15,14 +15,15 @@
  * root 노드를 여기서 추가합니다.
  *
  */
-template <typename T1, typename T2> class TreeSet : public Set {
+template <typename T> class TreeSet : public Set<T> {
 public:
-  Node<T1, T2> *getroot() {
-    return this->root_;
+  TreeSet() : root_(nullptr) {}
+  Node<T> *getroot() const {
+    return root_;
   } //짧은 getter이므로 그냥 여기서 구현했습니다.
 
 private:
-  Node<T1, T2> *root_;
+  Node<T> *root_;
 };
 
 #endif

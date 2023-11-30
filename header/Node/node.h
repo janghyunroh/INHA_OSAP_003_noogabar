@@ -11,19 +11,17 @@
  *
  */
 
-template <typename T1, typename T2> class Node {
+template <typename T> class Node {
 public:
-  Node(T1 key) : key_(key), data_(NULL), left_(NULL), right_(NULL) {}
-  T1 getkey() {}
-  T2 getdata() {}
-  Node *getleft() {}
-  void setleft() {}
-  Node *getright() {}
-  void setright() {}
+  Node(T key) : key_(key), left_(NULL), right_(NULL) {}
+  T getkey() { return key_; }
+  Node *getleft() { return left_; }
+  void setleft(Node *node) { left_ = node; }
+  Node *getright() { return right_; }
+  void setright(Node *node) { right_ = node; }
 
 private:
-  T1 key_;
-  T2 data_;
+  T key_;
   Node *left_;
   Node *right_;
 };

@@ -1,33 +1,89 @@
 
 ##class Node
 데이터 멤버
-int key
+T key
 : 노드에 저장 되어있는 실제 데이터. 과제에서 이야기하는 key와 동일
-(혼란 방지를 위해 추후 이름 변경 고려할 것)
 
-int depth 
-: 노드의 tree에서의 depth   
+~~int depth~~
+~~: 노드의 tree에서의 depth~~   
 
 **고려 사항 - depth 데이터 멤버의 필요성 여부**
  depth 데이터 멤버를 사용하게 되면 특정 노드의 depth를 따로 계산할 필요 없이 즉각 lookup할 수 있어 여러 함수들이 꽤 빨라지게 된다(시간 복잡도는 동일). 그러나 AVL Tree의 balancing 과정에서 이 depth를 무결성이 깨지지 않도록 적절히 변경해주어야 한다는 점에서 추가적인 구현 비용이 들어간다. 
  depth 데이터 멤버를 사용하지 않는다면 height함수를 통해 구한 height값과 root의 height값의 차를 이용하여 depth를 구할 수 있지만 이렇게 한다면 log n의 시간 소모가 추가된다. 
 
-**결론적으로 depth 데이터 멤버 구현하기로 결정됨**
+**결론적으로 depth 데이터 멤버는 구현하지 않기로 결정됨**
+
+Node* left_
+: 왼쪽 자식 노드
+
+Node* right_
+: 오른쪽 자식 노드
 
 멤버 메서드 
-– 없음
+– 각 데이터 멤버에 대한 getter와 setter
+- 생성자
 
 
+##class Set
+데이터 멤버
+unsigned int size_
+: Set의 크기. 
+
+멤버 메서드
+T Maximum(T arg)
+: 최대 키 반환
+
+T Minimum(T arg)
+: 최소 키 반환
+
+bool Empty()
+:empty 여부 반환
+
+int Size()
+: 크기 반환
+
+int Find(T arg)
+: 해당 노드 depth 반환
+
+int Insert(T arg)
+: arg로 새 노드 생성 후 삽입, 삽입 위치 depth 반환
+
+int Rank(T arg)
+: 해당 노드 rank 반환
+
+int Erase(T arg)
+: 해당 노드 삭제 후 삭제 전 depth 반환(없으면 0) 
+
+
+
+##class TreeSet : public Set
+데이터 멤버
+Node* root
+: TreeSet의 root 노드. 
+
+멤버 메서드
+root의 getter와 setter
 
 
 
 
 ##class AVL Tree
 데이터 멤버
-Node * root
-: AVL Tree의 root 노드. Tree의 모든 접근은 root 노드를 통해서 이루어진다.
+~~Node * root~~
+~~: AVL Tree의 root 노드. Tree의 모든 접근은 root 노드를 통해서 이루어진다.~~
 
 멤버 메서드
+
+Set class의 가상함수 구현
+
+<rotate 연산>
+RR node	// O (1)
+LL node	// O (1)
+LR node	// O (1)
+RL node	// O (1)
+
+
+~~
 Height node	// O (log n)
 : 입력된 노드의 왼쪽 자식의 height와 오른쪽 자식의 height 중 큰 것 + 1을 반환(재귀)
 
@@ -49,17 +105,6 @@ Erase X	// log n + log n OR log n
 : Search X 수행 뒤 없으면 0반환, 있으면 해당 노드의 depth 출력하고 
 	**고려 사항** 
 depth 출력 때문에 굳이 Search 함수를 처음에 사용하는데, 만약 AVL Tree의 Erase 함수에 depth 반환 기능을 구현한다면 AVL Tree의 Erase 한번 호출로 해결 가능
-
-
-<rotate 연산>
-RR node	// O (1)
-LL node	// O (1)
-LR node	// O (1)
-RL node	// O (1)
-
-
-
-
 
 
 
@@ -102,6 +147,6 @@ Rank X // O (log n) (추정)
 https://velog.io/@ehekaanldk/AVL-tree
 https://stackoverflow.com/questions/5137741/how-to-find-the-rank-of-a-node-in-an-avl-tree
 
-
+~~
 
 

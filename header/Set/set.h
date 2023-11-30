@@ -1,8 +1,14 @@
 #ifndef SET_H
 #define SET_H
 
-template <typename T1, typename T2> class Set {
+template <typename T> class Set {
 public:
+  /**
+   * @brief Construct a new Set object
+   * size 멤버는 Set class에서 관리
+   */
+  Set() : size_(0) {}
+
   /**
    * @brief arg값을 key로 갖는 노드를 root로 갖는 sub-tree에서의 최소 key 노드의
    * "key" 반환
@@ -10,7 +16,7 @@ public:
    * @param arg : sub-tree의 root 노드의 key
    * @return int : 최소 key 노드의 key
    */
-  virtual T1 Maximum(T1 arg) {}
+  virtual T Maximum(T arg) = 0;
 
   /**
    * @brief arg값을 key로 갖는 노드를 root로 갖는 sub-tree에서의 최대 key 노드의
@@ -19,7 +25,7 @@ public:
    * @param arg : sub-tree의 root 노드의 key
    * @return int : 최대 key 노드의 key
    */
-  virtual T1 Minimum(T1 arg) {}
+  virtual T Minimum(T arg) = 0;
 
   /**
    * @brief Set이 비어있는지 아닌지 확인
@@ -27,14 +33,14 @@ public:
    * @return true : Set의 원소 개수 = 0
    * @return false : Set의 원소 개수 > 0
    */
-  virtual bool Empty() {}
+  virtual bool Empty() = 0;
 
   /**
    * @brief Set의 원소 개수 반환
    *
    * @return int : Set의 원소의 개수
    */
-  virtual int Size() {}
+  virtual int Size() = 0;
 
   /**
    * @brief Set에 존재하는 arg값을 key로 갖는 노드의 depth 반환
@@ -42,7 +48,7 @@ public:
    * @param arg : 찾는 노드의 key
    * @return int : 해당 노드의 depth
    */
-  virtual int Find(T1 arg) {}
+  virtual int Find(T arg) = 0;
 
   /**
    * @brief 신규 노드 생성하여 삽입
@@ -50,7 +56,7 @@ public:
    * @param arg : 삽입할 노드의 key값
    * @return int : 삽입된 위치에서의 depth
    */
-  virtual int Insert(T1 arg) {}
+  virtual int Insert(T arg) = 0;
 
   /**
    * @brief 특정 노드의 rank 계산 함수
@@ -58,7 +64,7 @@ public:
    * @param arg : 계산할 노드의 key값
    * @return int : 해당 노드의 rank (없으면 0)
    */
-  virtual int Rank(T1 arg) {}
+  virtual int Rank(T arg) = 0;
 
   /**
    * @brief 특정 노드 삭제
@@ -66,13 +72,18 @@ public:
    * @param arg : 삭제할 노드의 key값
    * @return int : 삭제하기 전 해당 노드의 depth (없으면 0)
    */
-  virtual int Erase(T1 arg) {}
+  virtual int Erase(T arg) = 0;
 
   // size는 set에서 처리하고 getter도 짧은 함수이므로 헤더에서 구현했습니다
-  int getsize() { return this->size_; }
+  int getsize() { return size_; }
+  void increaseSize() { size_++; }
+  void decreaseSize() {
+    if (size_ > 0)
+      size_--;
+  }
 
 private:
-  int size_; // Set의 크기
+  unsigned int size_; // Set의 크기
 };
 
 #endif

@@ -11,8 +11,7 @@ using namespace std;
  * @param node : 높이를 잴 sub-tree의 루트 노드
  * @return int : 높이 h
  */
-template <typename T1, typename T2>
-int AVLTreeSet<T1, T2>::Height(Node<T1, T2> *node) {
+template <typename T> int AVLTreeSet<T>::Height(Node<T> *node) {
   int height = 0;
   if (node != nullptr) {
     int left = Height(node->getleft());
@@ -31,8 +30,7 @@ int AVLTreeSet<T1, T2>::Height(Node<T1, T2> *node) {
  *
  * 음수이면 오른쪽 자식, 양수이면 왼쪽 자식의 높이가 큰 것
  */
-template <typename T1, typename T2>
-int AVLTreeSet<T1, T2>::HeightDiff(Node<T1, T2> *node) {
+template <typename T> int AVLTreeSet<T>::HeightDiff(Node<T> *node) {
   return Height(node->getleft()) - Height(node->getright());
 }
 
@@ -43,9 +41,8 @@ int AVLTreeSet<T1, T2>::HeightDiff(Node<T1, T2> *node) {
  * @param parent
  * @return Node<T>*
  */
-template <typename T1, typename T2>
-Node<T1, T2> *AVLTreeSet<T1, T2>::RR(Node<T1, T2> *parent) {
-  Node<T1> *new_parent = parent->getright(); // right가 parent의 위로 올라간다
+template <typename T> Node<T> *AVLTreeSet<T>::RR(Node<T> *parent) {
+  Node<T> *new_parent = parent->getright(); // right가 parent의 위로 올라간다
   parent->setright(new_parent->getleft());
   new_parent->setleft(parent);
   return new_parent;
@@ -58,9 +55,8 @@ Node<T1, T2> *AVLTreeSet<T1, T2>::RR(Node<T1, T2> *parent) {
  * @param parent
  * @return Node<T>*
  */
-template <typename T1, typename T2>
-Node<T1, T2> *AVLTreeSet<T1, T2>::LL(Node<T1, T2> *parent) {
-  Node<T1> *new_parent = parent->getleft();
+template <typename T> Node<T> *AVLTreeSet<T>::LL(Node<T> *parent) {
+  Node<T> *new_parent = parent->getleft();
   parent->setleft(new_parent->getright());
   new_parent->setright(parent);
   return new_parent;
@@ -73,8 +69,7 @@ Node<T1, T2> *AVLTreeSet<T1, T2>::LL(Node<T1, T2> *parent) {
  * @param parent
  * @return Node<T>*
  */
-template <typename T1, typename T2>
-Node<T1, T2> *AVLTreeSet<T1, T2>::RL(Node<T1, T2> *parent) {
+template <typename T> Node<T> *AVLTreeSet<T>::RL(Node<T> *parent) {
   parent->setright(LL(parent->getright()));
   return RR(parent);
 }
@@ -86,8 +81,7 @@ Node<T1, T2> *AVLTreeSet<T1, T2>::RL(Node<T1, T2> *parent) {
  * @param parent
  * @return Node<T>*
  */
-template <typename T1, typename T2>
-Node<T1, T2> *AVLTreeSet<T1, T2>::LR(Node<T1, T2> *parent) {
+template <typename T> Node<T> *AVLTreeSet<T>::LR(Node<T> *parent) {
   parent->setleft(RR(parent->getleft()));
   return LL(parent);
 }
@@ -99,8 +93,7 @@ Node<T1, T2> *AVLTreeSet<T1, T2>::LR(Node<T1, T2> *parent) {
  * @param node
  * @return Node<T>*
  */
-template <typename T1, typename T2>
-Node<T1, T2> *AVLTreeSet<T1, T2>::Balancing(Node<T1, T2> *node) {
+template <typename T> Node<T> *AVLTreeSet<T>::Balancing(Node<T> *node) {
   int height_difference = HeightDiff(node);
 
   if (height_difference > 1) {           // LL or LR
@@ -128,13 +121,12 @@ Node<T1, T2> *AVLTreeSet<T1, T2>::Balancing(Node<T1, T2> *node) {
  * 전임하면서 확장성을 확보합니다. 이번 채점 서버에선 int 형에 대한 set 사용만
  * 다루므로 별도의 오버라이딩이 필요 없을 것입니다.
  */
-template <typename T1, typename T2>
-Node<T1, T2> *AVLTreeSet<T1, T2>::Search(T1 arg) {
-  Node *curN = this.getroot();
+template <typename T> Node<T> *AVLTreeSet<T>::Search(T arg) {
+  Node<T> *curN = this->getroot();
   while (curN != nullptr) { // tree의 맨 하단까지 내려가며 있는지 확인
-    if (arg == curN.getkey())
+    if (arg == curN->getkey())
       return curN;
-    curN = (arg > curN.getkey()) ? curN.getright() : curN.getleft();
+    curN = (arg > curN->getkey()) ? curN->getright() : curN->getleft();
   }
   return nullptr;
 }

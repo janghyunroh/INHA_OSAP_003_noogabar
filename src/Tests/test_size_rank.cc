@@ -8,7 +8,7 @@
  *
  */
 TEST(SizeTest, TestEmptySet) {
-  Set<int, int> set;
+  Set<int> set;
 
   int size = set.Size();
 
