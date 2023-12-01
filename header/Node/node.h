@@ -14,11 +14,11 @@
 template <typename T> class Node {
 public:
   Node(T key) : key_(key), left_(NULL), right_(NULL) {}
-  T getkey() { return key_; }
-  Node *getleft() { return left_; }
-  void setleft(Node *node) { left_ = node; }
-  Node *getright() { return right_; }
-  void setright(Node *node) { right_ = node; }
+  T get_key() { return key_; }
+  Node *get_left() { return left_; }
+  void set_left(Node *node) { left_ = node; }
+  Node *get_right() { return right_; }
+  void set_right(Node *node) { right_ = node; }
 
 private:
   T key_;

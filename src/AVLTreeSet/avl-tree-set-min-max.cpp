@@ -14,7 +14,7 @@
  *
  * 만약 해당 노드가 존재하지 않는 경우 NULL 반환
  */
-template <typename T> T1 AVLTreeSet<T>::Minimum(T arg) {
+template <typename T> T AVLTreeSet<T>::Minimum(T arg) {
   Node<T> *node = Search(arg);
   while (node->getleft()) {
     node = node->getleft();
@@ -35,7 +35,7 @@ template <typename T> T1 AVLTreeSet<T>::Minimum(T arg) {
  *
  * 만약 해당 노드가 존재하지 않는 경우 NULL 반환
  */
-template <typename T> T1 AVLTreeSet<T>::Maximum(T arg) {
+template <typename T> T AVLTreeSet<T>::Maximum(T arg) {
   Node<T> *node = Search(arg);
   while (node->getright()) {
     node = node->getright();

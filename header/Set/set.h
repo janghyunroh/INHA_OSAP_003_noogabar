@@ -76,8 +76,8 @@ public:
 
   // size는 set에서 처리하고 getter도 짧은 함수이므로 헤더에서 구현했습니다
   int getsize() { return size_; }
-  void increaseSize() { size_++; }
-  void decreaseSize() {
+  void IncreaseSize() { size_++; }
+  void DecreaseSize() {
     if (size_ > 0)
       size_--;
   }
