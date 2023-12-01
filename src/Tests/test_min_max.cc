@@ -15,7 +15,7 @@ public:
   void TearDown() override;
 
 protected:
-  Set<int, int> set_;
+  Set<int> set_;
 };
 
 /**

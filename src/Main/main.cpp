@@ -42,7 +42,7 @@ int main() {
 
         //찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버 테스트
         //케이스로는 들어올리 없는 input이라고 합니다.
-        if (!avl_tree_set.Exists(arg))
+        if (!avl_tree_set.Search(arg))
           cout << "해당 노드가 없습니다.\n";
         else {
           int key = avl_tree_set.Minimum(arg);
@@ -60,7 +60,7 @@ int main() {
 
         //찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버 테스트
         //케이스로는 들어올리 없는 input이라고 합니다.
-        if (!avl_tree_set.Exists(arg))
+        if (!avl_tree_set.Search(arg))
           cout << "해당 노드가 없습니다.\n";
         else {
           int key = avl_tree_set.Maximum(arg);

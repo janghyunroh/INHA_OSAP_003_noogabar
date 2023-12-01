@@ -7,9 +7,7 @@
  * @tparam T
  * @return int
  */
-template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Size() {
-  return this->getsize();
-}
+template <typename T> int AVLTreeSet<T>::Size() { return this->get_size(); }
 
 /**
  * @brief 찾는 노드의 rank를 반환하는 함수
@@ -18,14 +16,14 @@ template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Size() {
  * @param arg
  * @return int
  */
-template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Rank(T1 arg) {
-  Node *node = Search(arg);
+template <typename T> int AVLTreeSet<T>::Rank(T arg) {
+  Node<T> *node = Search(arg);
   // tree에 노드가 없다면 0 return
   if (node == nullptr) {
     return 0;
   }
   // left child를 root로 하는 서브크기가 곧 해당 노드보다 작은 원소의 개수
-  int rank = GetTreeSize(node->left) + 1;
+  int rank = GetTreeSize(node->get_left()) + 1;
   return rank;
 }
 
@@ -34,19 +32,17 @@ template <typename T1, typename T2> int AVLTreeSet<T1, T2>::Rank(T1 arg) {
 /**
  * @brief node를 root로 하는 서브트리의 size를 구하는 함수
  *
- * @tparam T1
- * @tparam T2
+ * @tparam T
  * @param node
  * @param x
  * @return int
  */
-template <typename T1, typename T2>
-int AVLTreeSet<T1, T2>::GetTreeSize(Node<T1, T2> *node) {
+template <typename T> int AVLTreeSet<T>::GetTreeSize(Node<T> *node) {
   if (!node) {
     return 0;
   }
   int cnt = 1;
-  cnt += GetTreeSize(node->left);
-  cnt += GetTreeSize(node->right);
+  cnt += GetTreeSize(node->get_left());
+  cnt += GetTreeSize(node->get_right());
   return cnt;
 }
