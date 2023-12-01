@@ -16,10 +16,10 @@
  */
 template <typename T> T AVLTreeSet<T>::Minimum(T arg) {
   Node<T> *node = Search(arg);
-  while (node->getleft()) {
-    node = node->getleft();
+  while (node->get_left()) {
+    node = node->get_left();
   }
-  T1 minKey = node->getkey();
+  T1 minKey = node->get_key();
   return minKey;
 }
 
@@ -37,10 +37,10 @@ template <typename T> T AVLTreeSet<T>::Minimum(T arg) {
  */
 template <typename T> T AVLTreeSet<T>::Maximum(T arg) {
   Node<T> *node = Search(arg);
-  while (node->getright()) {
-    node = node->getright();
+  while (node->get_right()) {
+    node = node->get_right();
   }
-  T maxKey = node->getkey();
+  T maxKey = node->get_key();
   return maxKey;
 }
 

@@ -14,8 +14,8 @@ using namespace std;
 template <typename T> int AVLTreeSet<T>::Height(Node<T> *node) {
   int height = 0;
   if (node != nullptr) {
-    int left = Height(node->getleft());
-    int right = Height(node->getright());
+    int left = Height(node->get_left());
+    int right = Height(node->get_right());
     int height = max(left, right) + 1;
   }
   return height;
@@ -31,7 +31,7 @@ template <typename T> int AVLTreeSet<T>::Height(Node<T> *node) {
  * 음수이면 오른쪽 자식, 양수이면 왼쪽 자식의 높이가 큰 것
  */
 template <typename T> int AVLTreeSet<T>::HeightDiff(Node<T> *node) {
-  return Height(node->getleft()) - Height(node->getright());
+  return Height(node->get_left()) - Height(node->get_right());
 }
 
 /**
@@ -42,9 +42,9 @@ template <typename T> int AVLTreeSet<T>::HeightDiff(Node<T> *node) {
  * @return Node<T>*
  */
 template <typename T> Node<T> *AVLTreeSet<T>::RR(Node<T> *parent) {
-  Node<T> *new_parent = parent->getright(); // right가 parent의 위로 올라간다
-  parent->setright(new_parent->getleft());
-  new_parent->setleft(parent);
+  Node<T> *new_parent = parent->get_right(); // right가 parent의 위로 올라간다
+  parent->set_right(new_parent->get_left());
+  new_parent->set_left(parent);
   return new_parent;
 }
 
@@ -56,9 +56,9 @@ template <typename T> Node<T> *AVLTreeSet<T>::RR(Node<T> *parent) {
  * @return Node<T>*
  */
 template <typename T> Node<T> *AVLTreeSet<T>::LL(Node<T> *parent) {
-  Node<T> *new_parent = parent->getleft();
-  parent->setleft(new_parent->getright());
-  new_parent->setright(parent);
+  Node<T> *new_parent = parent->get_left();
+  parent->set_left(new_parent->get_right());
+  new_parent->set_right(parent);
   return new_parent;
 }
 
@@ -70,7 +70,7 @@ template <typename T> Node<T> *AVLTreeSet<T>::LL(Node<T> *parent) {
  * @return Node<T>*
  */
 template <typename T> Node<T> *AVLTreeSet<T>::RL(Node<T> *parent) {
-  parent->setright(LL(parent->getright()));
+  parent->set_right(LL(parent->get_right()));
   return RR(parent);
 }
 
@@ -82,7 +82,7 @@ template <typename T> Node<T> *AVLTreeSet<T>::RL(Node<T> *parent) {
  * @return Node<T>*
  */
 template <typename T> Node<T> *AVLTreeSet<T>::LR(Node<T> *parent) {
-  parent->setleft(RR(parent->getleft()));
+  parent->set_left(RR(parent->get_left()));
   return LL(parent);
 }
 
@@ -96,13 +96,13 @@ template <typename T> Node<T> *AVLTreeSet<T>::LR(Node<T> *parent) {
 template <typename T> Node<T> *AVLTreeSet<T>::Balancing(Node<T> *node) {
   int height_difference = HeightDiff(node);
 
-  if (height_difference > 1) {           // LL or LR
-    if (HeightDiff(node->getleft()) > 0) // LL
+  if (height_difference > 1) {            // LL or LR
+    if (HeightDiff(node->get_left()) > 0) // LL
       return LL(node);
     else
       return LR(node);
-  } else if (height_difference < -1) {    // RR or LR
-    if (HeightDiff(node->getright()) > 0) // RL
+  } else if (height_difference < -1) {     // RR or LR
+    if (HeightDiff(node->get_right()) > 0) // RL
       return RL(node);
     else
       return RR(node);
@@ -122,11 +122,11 @@ template <typename T> Node<T> *AVLTreeSet<T>::Balancing(Node<T> *node) {
  * 다루므로 별도의 오버라이딩이 필요 없을 것입니다.
  */
 template <typename T> Node<T> *AVLTreeSet<T>::Search(T arg) {
-  Node<T> *curN = this->getroot();
+  Node<T> *curN = this->get_root();
   while (curN != nullptr) { // tree의 맨 하단까지 내려가며 있는지 확인
-    if (arg == curN->getkey())
+    if (arg == curN->get_key())
       return curN;
-    curN = (arg > curN->getkey()) ? curN->getright() : curN->getleft();
+    curN = (arg > curN->get_key()) ? curN->get_right() : curN->get_left();
   }
   return nullptr;
 }

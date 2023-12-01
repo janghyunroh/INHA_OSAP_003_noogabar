@@ -75,7 +75,7 @@ public:
   virtual int Erase(T arg) = 0;
 
   // size는 set에서 처리하고 getter도 짧은 함수이므로 헤더에서 구현했습니다
-  int getsize() { return size_; }
+  int get_size() { return size_; }
   void IncreaseSize() { size_++; }
   void DecreaseSize() {
     if (size_ > 0)

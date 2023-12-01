@@ -18,7 +18,7 @@
 template <typename T> class TreeSet : public Set<T> {
 public:
   TreeSet() : root_(nullptr) {}
-  Node<T> *getroot() const {
+  Node<T> *get_root() const {
     return root_;
   } //짧은 getter이므로 그냥 여기서 구현했습니다.
 

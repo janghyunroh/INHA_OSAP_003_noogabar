@@ -10,7 +10,7 @@
  * @return false
  */
 template <typename T> bool AVLTreeSet<T>::Empty() {
-  return (this->getsize() == 0);
+  return (this->get_size() == 0);
 }
 
 /**

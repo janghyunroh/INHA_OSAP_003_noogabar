@@ -7,7 +7,7 @@
  * @tparam T
  * @return int
  */
-template <typename T> int AVLTreeSet<T>::Size() { return this->getsize(); }
+template <typename T> int AVLTreeSet<T>::Size() { return this->get_size(); }
 
 /**
  * @brief 찾는 노드의 rank를 반환하는 함수
@@ -23,7 +23,7 @@ template <typename T> int AVLTreeSet<T>::Rank(T arg) {
     return 0;
   }
   // left child를 root로 하는 서브크기가 곧 해당 노드보다 작은 원소의 개수
-  int rank = GetTreeSize(node->getleft()) + 1;
+  int rank = GetTreeSize(node->get_left()) + 1;
   return rank;
 }
 
@@ -42,7 +42,7 @@ template <typename T> int AVLTreeSet<T>::GetTreeSize(Node<T> *node) {
     return 0;
   }
   int cnt = 1;
-  cnt += GetTreeSize(node->getleft());
-  cnt += GetTreeSize(node->getright());
+  cnt += GetTreeSize(node->get_left());
+  cnt += GetTreeSize(node->get_right());
   return cnt;
 }
