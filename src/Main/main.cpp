@@ -25,7 +25,7 @@ int main() {
 
     //채점 서버에선 int형 자료만을 다룹니다.
     // data는 아예 다루지 않지만 일단 int형으로 넣어주었습니다.
-    AVLTreeSet<int, int> avl_tree_set;
+    AVLTreeSet<int> avl_tree_set;
 
     cin >> Q;
     while (Q--) {
