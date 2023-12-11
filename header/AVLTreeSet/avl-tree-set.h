@@ -37,6 +37,9 @@ public:
   //각 기능 구현에 필요한 추가적인 함수는 이곳 아래에 사용처와 함께 적어준 다음,
   //각자 담당 cpp 파일에서 구현해주세요.
 
+  void Insert_N(Node<T> *node, T arg);
+
+
   // Rank 함수 구현 중 key값이 존재하지 않는 경우를 걸러내기 위해 한 단계 걸쳐
   // 구현
   int GetTreeSize(Node<T> *node) {}
