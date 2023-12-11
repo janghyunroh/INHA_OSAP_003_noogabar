@@ -7,7 +7,8 @@
  * @brief set이 비어있는 경우 Find를 확인하는 함수
  *
  */
-TEST(InsertTest, TestEmptySet) {
+TEST(InsertTest, TestEmptySet)
+{
   Set<int> *set = new AVLTreeSet<int>;
 
   // set_이 비어있어서 root노드가 되므로 기댓값은 0
@@ -29,7 +30,8 @@ TEST(InsertTest, TestEmptySet) {
  * @brief set의 find와 insert의 테스트를 위한 fixture
  *
  */
-class FindInsertTestFixture : public ::testing::Test {
+class FindInsertTestFixture : public ::testing::Test
+{
 public:
   FindInsertTestFixture();
   virtual ~FindInsertTestFixture();
@@ -44,7 +46,8 @@ protected:
  * @brief Set의 생성자 함수의 테스트를 위한 함수
  *
  */
-FindInsertTestFixture::FindInsertTestFixture() {
+FindInsertTestFixture::FindInsertTestFixture()
+{
   std::cout << "Constructor called\n";
 }
 
@@ -52,7 +55,8 @@ FindInsertTestFixture::FindInsertTestFixture() {
  * @brief Set의 소멸자 함수의 테스트를 위한 함수
  *
  */
-FindInsertTestFixture::~FindInsertTestFixture() {
+FindInsertTestFixture::~FindInsertTestFixture()
+{
   std::cout << "Destructor called\n";
 }
 
@@ -60,7 +64,8 @@ FindInsertTestFixture::~FindInsertTestFixture() {
  * @brief find 테스트 시작 전 set에 적절한 원소들을 삽입하는 함수
  *
  */
-void FindInsertTestFixture::SetUp() {
+void FindInsertTestFixture::SetUp()
+{
   std::cout << "SetUp called\n";
   set_ = new AVLTreeSet<int>;
 
@@ -77,7 +82,8 @@ void FindInsertTestFixture::SetUp() {
  * @brief 각 테스트 종료 후 삽입했던 원소를 모두 지우는 함수
  *
  */
-void FindInsertTestFixture::TearDown() {
+void FindInsertTestFixture::TearDown()
+{
   std::cout << "TearDown called\n";
   delete set_;
 }
@@ -86,10 +92,10 @@ void FindInsertTestFixture::TearDown() {
  * @brief set에 원소가 있을 때 size 함수 테스트
  *
  */
-TEST_F(FindInsertTestFixture, TestFind) {
+TEST_F(FindInsertTestFixture, TestFind)
+{
   // set에 15의 값을 갖는 노드는 없으므로 기댓값 0
   EXPECT_EQ(0, set_->Find(15));
-
   EXPECT_EQ(2, set_->Find(1));
   EXPECT_EQ(1, set_->Find(2));
   EXPECT_EQ(2, set_->Find(3));
@@ -97,7 +103,8 @@ TEST_F(FindInsertTestFixture, TestFind) {
   EXPECT_EQ(2, set_->Find(6));
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
