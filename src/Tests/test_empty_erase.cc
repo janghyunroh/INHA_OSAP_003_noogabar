@@ -69,7 +69,7 @@ void EmptyEraseTestFixture::SetUp() {
 TEST_F(EmptyEraseTestFixture, TestErase) {
 
   // 존재하지 않는 원소에 대한 삭제 시도
-  EXPECT_EQ(set_->Erase(10), 1);
+  EXPECT_EQ(set_->Erase(10), 0);
 
   EXPECT_EQ(set_->Erase(1), 1);
   EXPECT_EQ(set_->Erase(5), 1);
