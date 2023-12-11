@@ -1,3 +1,12 @@
+
+// Valid-License-Identifier: Apache-2.0
+
+// SPDX-URL: https://spdx.org/licenses/Apache-2.0.html
+// Version 2.0, January 2004
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Copyright November 2023 Inha Univ. Open Source Project Team noogabar
+
 #ifndef AVL_H
 #define AVL_H
 
@@ -9,7 +18,7 @@
  */
 template <typename T> class AVLTreeSet : public TreeSet<T> {
 public:
-  //생성자는 기본 생성자만으로 충분할 것 같아 제거하였습니다.
+  // 생성자는 기본 생성자만으로 충분할 것 같아 제거하였습니다.
 
   // Overriding fuinctions
   T Maximum(T arg) override;
@@ -34,26 +43,25 @@ public:
   Node<T> *Balancing(Node<T> *node);
   Node<T> *Search(T arg);
 
-  //각 기능 구현에 필요한 추가적인 함수는 이곳 아래에 사용처와 함께 적어준 다음,
-  //각자 담당 cpp 파일에서 구현해주세요.
+  // 각 기능 구현에 필요한 추가적인 함수는 이곳 아래에 사용처와 함께 적어준
+  // 다음, 각자 담당 cpp 파일에서 구현해주세요.
 
-  void Insert_N(Node<T> *node, T arg);
-
+  void InsertN(Node<T> *node, T arg);
 
   // Rank 함수 구현 중 key값이 존재하지 않는 경우를 걸러내기 위해 한 단계 걸쳐
   // 구현
-  int GetTreeSize(Node<T> *node) {}
+  int GetTreeSize(Node<T> *node);
 
   // Min/Max 함수 구현 중 key값이 존재하지 않는 경우를 걸러내기 위해 main에서 한
   // 단계 걸쳐 사용(내부에서 Search 사용)
   // bool Exists(T1 arg) {}
-  //이 함수는 Search함수와 역할이 겹치므로 삭제하였습니다. main에서는 search를
-  //통해 존재 여부를 확인합니다.
+  // 이 함수는 Search함수와 역할이 겹치므로 삭제하였습니다. main에서는 search를
+  // 통해 존재 여부를 확인합니다.
 };
 
 #endif // !AVL_H
 
-//변경 전 기존 코드는 이렇게 주석으로 남겨놓겠습니다.
+// 변경 전 기존 코드는 이렇게 주석으로 남겨놓겠습니다.
 
 // struct Node {
 //   int key_;

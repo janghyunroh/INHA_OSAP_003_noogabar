@@ -1,5 +1,13 @@
+// Valid-License-Identifier: Apache-2.0
+
+// SPDX-URL: https://spdx.org/licenses/Apache-2.0.html
+// Version 2.0, January 2004
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 #include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
-//담당자: 이정현
+
+// 담당자: 이정현
 
 /**
  * @brief Set의 크기를 반환하는 함수

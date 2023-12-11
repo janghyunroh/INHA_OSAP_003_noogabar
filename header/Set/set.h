@@ -1,3 +1,11 @@
+// Valid-License-Identifier: Apache-2.0
+
+// SPDX-URL: https://spdx.org/licenses/Apache-2.0.html
+// Version 2.0, January 2004
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Copyright November 2023 Inha Univ. Open Source Project Team noogabar
+
 #ifndef SET_H
 #define SET_H
 
@@ -88,7 +96,7 @@ private:
 
 #endif
 
-//이전 구현 코드는 주석 형태로 보관하다 이후 삭제하겠습니다
+// 이전 구현 코드는 주석 형태로 보관하다 이후 삭제하겠습니다
 
 // #include "AVL.h"
 // #include <utility>
