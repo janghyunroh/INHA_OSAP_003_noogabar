@@ -24,8 +24,7 @@ int main() {
   while (T--) {
 
     //채점 서버에선 int형 자료만을 다룹니다.
-    // data는 아예 다루지 않지만 일단 int형으로 넣어주었습니다.
-    AVLTreeSet<int> avl_tree_set;
+    Set<int> *set = new AVLTreeSet<int>;
 
     cin >> Q;
     while (Q--) {
@@ -40,15 +39,16 @@ int main() {
       if (cmd == "minumum") {
         cin >> arg;
 
-        //찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버 테스트
-        //케이스로는 들어올리 없는 input이라고 합니다.
-        if (!avl_tree_set.Search(arg))
-          cout << "해당 노드가 없습니다.\n";
-        else {
-          int key = avl_tree_set.Minimum(arg);
-          int depth = avl_tree_set.Find(key);
-          cout << key << " " << depth << '\n';
-        }
+        // 찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버
+        // 테스트 케이스로는 들어올리 없는 input이라고 합니다.
+        // -> search로 검사하는 부분 삭제
+        // if (!set->Search(arg))
+        //   cout << "해당 노드가 없습니다.\n";
+        // else { }
+
+        int key = set->Minimum(arg);
+        int depth = set->Find(key);
+        cout << key << " " << depth << '\n';
       }
 
       /**
@@ -58,33 +58,35 @@ int main() {
       else if (cmd == "maximum") {
         cin >> arg;
 
-        //찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버 테스트
-        //케이스로는 들어올리 없는 input이라고 합니다.
-        if (!avl_tree_set.Search(arg))
-          cout << "해당 노드가 없습니다.\n";
-        else {
-          int key = avl_tree_set.Maximum(arg);
-          int depth = avl_tree_set.Find(key);
-          cout << key << " " << depth << '\n';
-        }
+        // 찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버
+        // 테스트 케이스로는 들어올리 없는 input이라고 합니다.
+        // -> search로 검사하는 부분 삭제
+        // if (!set->Search(arg))
+        //   cout << "해당 노드가 없습니다.\n";
+        // else { }
+
+        int key = set->Maximum(arg);
+        int depth = set->Find(key);
+        cout << key << " " << depth << '\n';
+
       }
 
       else if (cmd == "empty") {
-        cout << avl_tree_set.Empty() << '\n';
+        cout << set->Empty() << '\n';
       }
 
       else if (cmd == "size") {
-        cout << avl_tree_set.Size() << "\n";
+        cout << set->Size() << "\n";
       }
 
       else if (cmd == "find") {
         cin >> arg;
-        cout << avl_tree_set.Find(arg) << '\n';
+        cout << set->Find(arg) << '\n';
       }
 
       else if (cmd == "insert") {
         cin >> arg;
-        cout << avl_tree_set.Insert(arg) << '\n';
+        cout << set->Insert(arg) << '\n';
       }
 
       //====================고급 기능====================
@@ -94,8 +96,8 @@ int main() {
        */
       else if (cmd == "rank") {
         cin >> arg;
-        int depth = avl_tree_set.Find(arg);
-        int rank = avl_tree_set.Rank(arg);
+        int depth = set->Find(arg);
+        int rank = set->Rank(arg);
         cout << depth << " " << rank << '\n';
       }
 
@@ -104,7 +106,7 @@ int main() {
        */
       else if (cmd == "erase") {
         cin >> arg;
-        cout << avl_tree_set.Erase(arg) << '\n';
+        cout << set->Erase(arg) << '\n';
       }
 
       /**
