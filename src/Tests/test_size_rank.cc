@@ -1,4 +1,4 @@
-#include "INHA_OSAP_003_noogabar/header/Set/set.h"
+#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
 #include <gtest/gtest.h>
 #include <iostream>
 #include <stdexcept>
@@ -8,9 +8,9 @@
  *
  */
 TEST(SizeTest, TestEmptySet) {
-  Set<int> set;
+  Set<int> *set = new AVLTreeSet<int>;
 
-  int size = set.Size();
+  int size = set->Size();
 
   // set이 비어있으므로 기대값은 0
   EXPECT_EQ(0, size);
@@ -28,7 +28,7 @@ public:
   void TearDown() override;
 
 protected:
-  Set<int, int> set_;
+  Set<int> *set_;
 };
 
 /**
@@ -53,11 +53,13 @@ SizeRankTestFixture::~SizeRankTestFixture() {
  */
 void SizeRankTestFixture::SetUp() {
   std::cout << "SetUp called\n";
+  set_ = new AVLTreeSet<int>;
+
   // 테스트 전 1, 5, 3, 9를 차례로 set에 삽입
-  set_.Insert(1);
-  set_.Insert(5);
-  set_.Insert(3);
-  set_.Insert(9);
+  set_->Insert(1);
+  set_->Insert(5);
+  set_->Insert(3);
+  set_->Insert(9);
 }
 
 /**
@@ -66,10 +68,7 @@ void SizeRankTestFixture::SetUp() {
  */
 void SizeRankTestFixture::TearDown() {
   std::cout << "TearDown called\n";
-  set_.Erase(1);
-  set_.Erase(5);
-  set_.Erase(3);
-  set_.Erase(9);
+  delete set_;
 }
 
 /**
@@ -78,7 +77,7 @@ void SizeRankTestFixture::TearDown() {
  */
 TEST_F(SizeRankTestFixture, TestSize) {
   // 현재 4개의 원소가 삽입되어있으므로 기댓값은 4
-  EXPECT_EQ(4, set_.Size());
+  EXPECT_EQ(4, set_->Size());
 }
 
 /**
@@ -88,10 +87,10 @@ TEST_F(SizeRankTestFixture, TestSize) {
 TEST_F(SizeRankTestFixture, TestRank) {
   // 현재 set에는 1, 3, 5, 9가 들어있고 1보다 작은 원소는 존재하지 않음
   // 따라서 Rank(1)의 기댓값은 0 + 1 = 1
-  EXPECT_EQ(1, set_.Rank(1));
-  EXPECT_EQ(2, set_.Rank(3));
-  EXPECT_EQ(3, set_.Rank(5));
-  EXPECT_EQ(4, set_.Rank(9));
+  EXPECT_EQ(1, set_->Rank(1));
+  EXPECT_EQ(2, set_->Rank(3));
+  EXPECT_EQ(3, set_->Rank(5));
+  EXPECT_EQ(4, set_->Rank(9));
 }
 
 /**
@@ -100,7 +99,7 @@ TEST_F(SizeRankTestFixture, TestRank) {
  */
 TEST_F(SizeRankTestFixture, TestRankNotExist) {
   // key를 2로 갖는 원소가 존재하지 않으므로 Rank(2)의 기댓값은 0
-  EXPECT_EQ(0, set_.Rank(2));
+  EXPECT_EQ(0, set_->Rank(2));
 }
 
 int main(int argc, char **argv) {
