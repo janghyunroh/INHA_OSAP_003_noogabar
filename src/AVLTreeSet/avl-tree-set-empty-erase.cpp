@@ -22,15 +22,23 @@ template <typename T> bool AVLTreeSet<T>::Empty() {
  * @return int
  */
 template <typename T> int AVLTreeSet<T>::Erase(T arg) {
-  if (this->Empty()) {
+  
+  //존재하지 않는 노드에 대한 삭제 연산
+  Node<T>* node = this->Search(arg);
+  if(node == nullptr) {
     return 0;
   }
+
+  //반환할 depth 값 저장
   int depth = this->Find(arg);
-  if (depth == 0) {
-    return 0;
-  }
+
+  //delete 수행(별도 함수)
   this->root = this->Delete(this->root, arg, nullptr);
+
+  //size 감소
   this->DecreaseSize();
+
+  //depth 반환
   return depth;
 }
 
@@ -87,8 +95,6 @@ template <typename T> Node<T> Delete(Node<T> *root, int key, Node<T> *parent) {
       Node<T> *temp = root->get_left();
       parent->set_left(temp);
 
-
-
     }
 
     //3. 삭제할 노드의 우측 서브 트리만 존재하는 경우 
@@ -100,8 +106,6 @@ template <typename T> Node<T> Delete(Node<T> *root, int key, Node<T> *parent) {
       Node<T> *temp = root->get_right();
       parent->set_right(temp);
 
-
-
     }
 
     //4. 삭제할 노드의 양쪽 서브 트리가 모두 존재하는 경우 - 우측 서브 트리에서 가장 작은 노드(후임자)를 찾아 대체
@@ -110,12 +114,25 @@ template <typename T> Node<T> Delete(Node<T> *root, int key, Node<T> *parent) {
       
       //우측 서브 트리에서 가장 작은 노드(후임자)를 찾아 대체
       Node<T> *successor = root->get_right();
+      Node<T> *successorParent = root;
       while(successor->get_left() != nullptr) {
+        successorParent = successor;
         successor = successor->get_left();
       }
 
       //후임자의 부모 노드와 자식 노드를 연결
-      
+      successor->set_left(deleteNode->get_left());
+      successor->set_right(deleteNode->get_right()); 
+
+      //후임자의 기존 위치를 nullptr로 초기화
+      successorParent->set_left(nullptr);
+
+      //후임자를 삭제 노드의 위치로 옮기기(후임자의 부모 노드가 삭제 노드의 부모 노드가 되도록)
+      root = successor;
+
+      delete deleteNode;
+
     }
   }
+  return root;
 }
