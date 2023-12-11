@@ -1,3 +1,10 @@
+// Valid-License-Identifier: Apache-2.0
+
+// SPDX-URL: https://spdx.org/licenses/Apache-2.0.html
+// Version 2.0, January 2004
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 #include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
 #include <iostream>
 
@@ -23,7 +30,7 @@ int main() {
   cin >> T;
   while (T--) {
 
-    //채점 서버에선 int형 자료만을 다룹니다.
+    // 채점 서버에선 int형 자료만을 다룹니다.
     Set<int> *set = new AVLTreeSet<int>;
 
     cin >> Q;

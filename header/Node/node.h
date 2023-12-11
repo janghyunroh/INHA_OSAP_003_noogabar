@@ -1,3 +1,11 @@
+// Valid-License-Identifier: Apache-2.0
+
+// SPDX-URL: https://spdx.org/licenses/Apache-2.0.html
+// Version 2.0, January 2004
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Copyright November 2023 Inha Univ. Open Source Project Team noogabar
+
 #ifndef NODE_H
 #define NODE_H
 

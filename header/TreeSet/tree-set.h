@@ -1,3 +1,11 @@
+// Valid-License-Identifier: Apache-2.0
+
+// SPDX-URL: https://spdx.org/licenses/Apache-2.0.html
+// Version 2.0, January 2004
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Copyright November 2023 Inha Univ. Open Source Project Team noogabar
+
 #ifndef TREE_SET_H
 #define TREE_SET_H
 
@@ -20,7 +28,8 @@ public:
   TreeSet() : root_(nullptr) {}
   Node<T> *get_root() const {
     return root_;
-  } //짧은 getter이므로 그냥 여기서 구현했습니다.
+  } // 짧은 getter이므로 그냥 여기서 구현했습니다.
+  void set_root(Node<T> *node) { root_ = node; }
 
 private:
   Node<T> *root_;

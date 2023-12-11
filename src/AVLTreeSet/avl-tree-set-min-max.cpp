@@ -1,6 +1,13 @@
+// Valid-License-Identifier: Apache-2.0
+
+// SPDX-URL: https://spdx.org/licenses/Apache-2.0.html
+// Version 2.0, January 2004
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 #include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
 
-//담당자: 류지훈
+// 담당자: 류지훈
 
 /**
  * @brief arg를 key 값으로 가진 노드를 root로 하는 서브 트리 내에서 최소 key를
@@ -19,7 +26,7 @@ template <typename T> T AVLTreeSet<T>::Minimum(T arg) {
   while (node->get_left()) {
     node = node->get_left();
   }
-  T1 minKey = node->get_key();
+  T minKey = node->get_key();
   return minKey;
 }
 
@@ -58,8 +65,8 @@ template <typename T> T AVLTreeSet<T>::Maximum(T arg) {
 //     return false;
 //   return true;
 
-//끝까지 못 찾아 nullptr에 도달한 경우
-//  return false;
-//}
+// 끝까지 못 찾아 nullptr에 도달한 경우
+//   return false;
+// }
 
 //====================기타 구현 함수====================
