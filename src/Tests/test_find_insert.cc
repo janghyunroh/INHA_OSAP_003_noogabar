@@ -86,7 +86,7 @@ void FindInsertTestFixture::TearDown() {
  * @brief set에 원소가 있을 때 size 함수 테스트
  *
  */
-TEST_F(FindInsertTestFixture, TestSize) {
+TEST_F(FindInsertTestFixture, TestFind) {
   // set에 15의 값을 갖는 노드는 없으므로 기댓값 0
   EXPECT_EQ(0, set_->Find(15));
 
