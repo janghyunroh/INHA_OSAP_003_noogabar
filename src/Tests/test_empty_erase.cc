@@ -1,41 +1,25 @@
-#include "INHA_OSAP_003_noogabar/header/Set/AVLTreeSet/avl-tree-set.h"
+#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
 #include <gtest/gtest.h>
 #include <iostream>
 #include <stdexcept>
 
-//========== Test Fixture를 사용하지 않은 Test ==========
+//========== Test Fixture를 사용하지 않은 Test - Empty Test ==========
 
+// Set의 Empty를 위한 Test
 TEST(EmptyEraseTest, TestEmpty) {
-    Set<int> *set = new AVLTreeSet<int>;
-    
-    ASSERT_EQ(set->Empty(), true);
-    set->Insert(1);
-    ASSERT_EQ(set->Empty(), false);
-    set->Delete(1);
-    ASSERT_EQ(set->Empty(), true);
-    
+  Set<int> *set = new AVLTreeSet<int>;
+
+  EXPECT_EQ(set->Empty(), true);
+  set->Insert(1);
+  EXPECT_EQ(set->Empty(), false);
+  set->Erase(1);
+  EXPECT_EQ(set->Empty(), true);
 }
 
-TEST(EmptyEraseTest, TestErase) {
-    Set<int> *set = new AVLTreeSet<int>;
-
-    set->Insert(1);
-    set->Insert(5);
-    set->Insert(3);
-    set->Insert(9);
-    set->Insert(4);
-
-    ASSERT_EQ(set->Erase(1), 1);
-    ASSERT_EQ(set->Erase(5), 2);
-    ASSERT_EQ(set->Erase(3), 2);
-    ASSERT_EQ(set->Erase(9), 3);
-    ASSERT_EQ(set->Erase(4), 3);
-}
-
-//========== Test Fixture를 사용한 Test : Erase Test에 사용 ==========
+//========== Test Fixture를 사용한 Test - Erase Test ==========
 
 /**
- * @brief set의 Empty과 Erase의 테스트를 위한 fixture
+ * @brief set의 Erase의 테스트를 위한 fixture
  *
  */
 class EmptyEraseTestFixture : public ::testing::Test {
@@ -46,7 +30,7 @@ public:
   void TearDown() override;
 
 protected:
-  Set<int> set_;
+  Set<int> *set_;
 };
 
 /**
@@ -55,7 +39,6 @@ protected:
  */
 EmptyEraseTestFixture::EmptyEraseTestFixture() {
   std::cout << "Constructor called\n";
-
 }
 
 /**
@@ -66,38 +49,33 @@ EmptyEraseTestFixture::~EmptyEraseTestFixture() {
   std::cout << "Destructor called\n";
 }
 
-EmptrEraseTestFixture::SetUp() {
+/**
+ * SetUp - 원소 삽입
+ */
+void EmptyEraseTestFixture::SetUp() {
   std::cout << "SetUp called\n";
-  
-  set_ = new AVLTreeSet<int>();
+  set_ = new AVLTreeSet<int>;
+  set_->Insert(1);
+  set_->Insert(5);
+  set_->Insert(3);
+  set_->Insert(9);
+  set_->Insert(4);
 }
 
 /**
- * @brief set이 비어있는지 확인하는 테스트
+ * @brief set의 Erase에 대한 Test
  *
  */
-TEST_F(EmptyEraseTestFixture, TestEmpty) {
-  EXPECT_EQ(set_.Empty(), true);
-  set_.Insert(1);
-  set_.Insert(5);
-  set_.Insert(3);
-  set_.Insert(9);
-  set_.Insert(4);
-  EXPECT_EQ(set_.Empty(), false);
-}
-
 TEST_F(EmptyEraseTestFixture, TestErase) {
-  set_.Insert(1);
-  set_.Insert(5);
-  set_.Insert(3);
-  set_.Insert(9);
-  set_.Insert(4);
 
-  EXPECT_EQ(set_.Erase(1), 1);
-  EXPECT_EQ(set_.Erase(5), 2);
-  EXPECT_EQ(set_.Erase(3), 2);
-  EXPECT_EQ(set_.Erase(9), 3);
-  EXPECT_EQ(set_.Erase(4), 3);
+  // 존재하지 않는 원소에 대한 삭제 시도
+  EXPECT_EQ(set_->Erase(10), 1);
+
+  EXPECT_EQ(set_->Erase(1), 1);
+  EXPECT_EQ(set_->Erase(5), 1);
+  EXPECT_EQ(set_->Erase(3), 1);
+  EXPECT_EQ(set_->Erase(9), 1);
+  EXPECT_EQ(set_->Erase(4), 0);
 }
 
 int main(int argc, char **argv) {
