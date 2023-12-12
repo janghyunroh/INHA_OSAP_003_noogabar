@@ -40,7 +40,7 @@ template <typename T> int AVLTreeSet<T>::Erase(T arg) {
   int depth = this->Find(arg);
 
   // delete 수행(별도 함수)
-  this->root = this->Delete(this->root, arg, nullptr);
+  this->set_root(Delete(this->get_root(), arg, nullptr));
 
   // size 감소
   this->DecreaseSize();
@@ -61,9 +61,14 @@ template <typename T> int AVLTreeSet<T>::Erase(T arg) {
  * @param arg
  * @return int
  */
-template <typename T> Node<T> Delete(Node<T> *root, int key, Node<T> *parent) {
+template <typename T> Node<T> Delete(Node<T> *root, T key, Node<T> *parent) {
 
   // 노드가 존재하지 않을 경우
+  /**
+   * 재귀 수행 때문에 종단 노드에 도착하는 경우를 처리하기 위한 구문이며,
+   * 실제로 없는 노드를 삭제하는 경우는 상위 함수인 Erase에서 걸러지므로
+   * Size 문제는 걱정 없을 것으로 보입니다.
+   */
   if (root == nullptr) {
     return nullptr;
   }

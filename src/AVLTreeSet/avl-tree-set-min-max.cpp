@@ -50,23 +50,3 @@ template <typename T> T AVLTreeSet<T>::Maximum(T arg) {
   T maxKey = node->get_key();
   return maxKey;
 }
-
-/**
- * @brief 특정 key값의 노드가 Set에 존재하는지 확인
- *
- * @tparam T
- * @param arg
- * @return true
- * @return false
- */
-// template <typename T1, typename T2> bool AVLTreeSet<T1, T2>::Exists(T1 arg) {
-//   Node *node = Search(arg);
-//   if (node == nullptr)
-//     return false;
-//   return true;
-
-// 끝까지 못 찾아 nullptr에 도달한 경우
-//   return false;
-// }
-
-//====================기타 구현 함수====================

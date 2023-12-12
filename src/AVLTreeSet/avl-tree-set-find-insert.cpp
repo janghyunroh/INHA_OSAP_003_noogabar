@@ -25,12 +25,12 @@ template <typename T> int AVLTreeSet<T>::Find(T arg) {
   avl-tree-set original 함수에 search 함수 있으니까 해당 함수 활용하시면 될 것
   같습니다.
   */
-  Node *curN = this.get_root();
+  Node<T> *curN = this->get_root();
   int depth = 0;
   while (curN != nullptr) { // tree의 맨 하단까지 내려가며 있는지 확인
     if (arg == curN->get_key())
       return depth;
-    curN = (arg > curN->get_key()) ? curN->get_right() : curN->get_left();
+    curN = ((arg > curN->get_key()) ? curN->get_right() : curN->get_left());
     depth++;
   }
   return 0;
@@ -47,25 +47,27 @@ template <typename T> int AVLTreeSet<T>::Insert(T arg) {
   if (Size() == 0) {
     Node<T> *newN = new Node<T>(arg);
     this->set_root(newN);
+    this->IncreaseSize();
     return 0;
   }
 
-  Node<T> *parN = this.get_root();
+  Node<T> *parN = this->get_root();
   // arg의 값을 갖는 노드가 이미 존재하는지 확인
   if (Find(arg) > 0 || arg == parN->get_key()) {
     return -1;
   }
 
   InsertN(parN, arg);
+  this->IncreaseSize();
   return Find(arg);
 }
 
 //====================기타 구현 함수====================
 
 template <typename T> void AVLTreeSet<T>::InsertN(Node<T> *parN, T arg) {
-  if (parN->get_key > arg) {
+  if (parN->get_key() > arg) {
     if (parN->get_left() == nullptr) {
-      Node *newN = new Node<T>(arg);
+      Node<T> *newN = new Node<T>(arg);
       parN->set_left(newN);
       return;
     } else {
@@ -74,7 +76,7 @@ template <typename T> void AVLTreeSet<T>::InsertN(Node<T> *parN, T arg) {
     }
   } else {
     if (parN->get_right() == nullptr) {
-      Node *newN = new Node<T>(arg);
+      Node<T> *newN = new Node<T>(arg);
       parN->set_right(newN);
       return;
     } else {
