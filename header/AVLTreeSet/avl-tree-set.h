@@ -57,31 +57,7 @@ public:
   // bool Exists(T1 arg) {}
   // 이 함수는 Search함수와 역할이 겹치므로 삭제하였습니다. main에서는 search를
   // 통해 존재 여부를 확인합니다.
+  Node<T> *Delete(Node<T> *root, T arg, Node<T> *parent);
 };
 
 #endif // !AVL_H
-
-// 변경 전 기존 코드는 이렇게 주석으로 남겨놓겠습니다.
-
-// struct Node {
-//   int key_;
-//   Node *left_;
-//   Node *right_;
-// };
-
-// class AVLTree {
-// public:
-//   Node *root_;
-//   AVLTree();
-//   int Height(Node *node) {}
-//   int HeightDiff(Node *node) {}
-//   Node *RR(Node *parent) {}
-//   Node *LL(Node *parent) {}
-//   Node *RL(Node *parent) {}
-//   Node *LR(Node *parent) {}
-//   Node *Balancing(Node *node) {}
-//   int Insert(int arg) {}
-//   int Erase(int arg) {}
-//   Node *Search(int arg) {}
-//   // int Depth(int arg) {}
-// };

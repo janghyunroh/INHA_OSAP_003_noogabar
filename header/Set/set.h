@@ -95,26 +95,3 @@ private:
 };
 
 #endif
-
-// 이전 구현 코드는 주석 형태로 보관하다 이후 삭제하겠습니다
-
-// #include "AVL.h"
-// #include <utility>
-
-// class Set {
-
-// public:
-//   Set(AVLTree *tree) : tree_(tree), size_(0) {}
-//   std::pair<int, int> Minimum(int arg) {}
-//   std::pair<int, int> Maximum(int arg) {}
-//   bool Empty() {}
-//   int Size() {}
-//   int Find(int arg) {}
-//   int Insert(int arg) {}
-//   int Rank(int arg) {}
-//   int Erase(int arg) {}
-
-// private:
-//   AVLTree *tree_;
-//   int size_;
-// };
