@@ -31,12 +31,20 @@ template <typename T> int AVLTreeSet<T>::Rank(T arg) {
     return 0;
   }
   // left child를 root로 하는 서브크기가 곧 해당 노드보다 작은 원소의 개수
-  int rank = GetTreeSize(node->get_left()) + 1;
-  return rank;
+  Node<T> *curN = this->get_root();
+  int cnt = 0;
+  while (curN != nullptr) {
+    if (curN->get_key() <= arg) {
+      cnt += GetTreeSize(curN->get_left()) + 1;
+      curN = curN->get_right();
+    } else {
+      curN = curN->get_left();
+    }
+  }
+  return cnt;
 }
 
 //====================기타 구현 함수====================
-
 /**
  * @brief node를 root로 하는 서브트리의 size를 구하는 함수
  *
