@@ -14,7 +14,7 @@
  */
 template <typename T> class Node {
 public:
-  Node(T key) : key_(key), left_(NULL), right_(NULL) {}
+  Node(T key) : key_(key), left_(nullptr), right_(nullptr) {}
   T get_key() { return key_; }
   Node<T> *get_left() { return left_; }
   void set_left(Node<T> *node) { left_ = node; }
