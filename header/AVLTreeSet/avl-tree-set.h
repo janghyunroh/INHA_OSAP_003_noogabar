@@ -33,6 +33,10 @@ public:
   bool Empty() override;
   int Erase(T arg) override;
 
+  //디버깅
+  void debug() override;
+  void debugBFS() override;
+
   // Original functions
   int Height(Node<T> *node);
   int HeightDiff(Node<T> *node);
@@ -42,22 +46,21 @@ public:
   Node<T> *LR(Node<T> *parent);
   Node<T> *Balancing(Node<T> *node);
   Node<T> *Search(T arg);
+  int UpdateHeight(Node<T> *node) {
+    return 1 + max(Height(node->get_left()), Height(node->get_right()));
+  }
 
-  // 각 기능 구현에 필요한 추가적인 함수는 이곳 아래에 사용처와 함께 적어준
-  // 다음, 각자 담당 cpp 파일에서 구현해주세요.
+  int UpdateSubSize(Node<T> *node) {
+    int left_size = node->get_left() ? node->get_left()->get_sub_size() : 0;
+    int right_size = node->get_right() ? node->get_right()->get_sub_size() : 0;
+    return 1 + left_size + right_size;
+  }
 
-  void InsertN(Node<T> *node, T arg);
-
-  // Rank 함수 구현 중 key값이 존재하지 않는 경우를 걸러내기 위해 한 단계 걸쳐
-  // 구현
+  // 기타 추가 구현 함수
+  Node<T> *InsertN(Node<T> *node, T arg);
   int GetTreeSize(Node<T> *node);
-
-  // Min/Max 함수 구현 중 key값이 존재하지 않는 경우를 걸러내기 위해 main에서 한
-  // 단계 걸쳐 사용(내부에서 Search 사용)
-  // bool Exists(T1 arg) {}
-  // 이 함수는 Search함수와 역할이 겹치므로 삭제하였습니다. main에서는 search를
-  // 통해 존재 여부를 확인합니다.
-  Node<T> *Delete(Node<T> *root, T arg, Node<T> *parent);
+  Node<T> *Delete(Node<T> *node, T key);
+  void Inorder(Node<T> *node);
 };
 
 #endif // !AVL_H

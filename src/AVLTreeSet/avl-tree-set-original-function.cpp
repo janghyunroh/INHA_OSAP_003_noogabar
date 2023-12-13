@@ -6,7 +6,9 @@
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 #include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
+#include "avl-tree-set.h"
 #include <algorithm>
+
 
 using namespace std;
 
@@ -18,13 +20,7 @@ using namespace std;
  * @return int : 높이 h
  */
 template <typename T> int AVLTreeSet<T>::Height(Node<T> *node) {
-  int height = 0;
-  if (node != nullptr) {
-    int left = Height(node->get_left());
-    int right = Height(node->get_right());
-    int height = max(left, right) + 1;
-  }
-  return height;
+  return node ? node->get_height() : 0;
 }
 
 /**
@@ -37,6 +33,8 @@ template <typename T> int AVLTreeSet<T>::Height(Node<T> *node) {
  * 음수이면 오른쪽 자식, 양수이면 왼쪽 자식의 높이가 큰 것
  */
 template <typename T> int AVLTreeSet<T>::HeightDiff(Node<T> *node) {
+  if (node == nullptr)
+    return 0;
   return Height(node->get_left()) - Height(node->get_right());
 }
 
@@ -51,6 +49,15 @@ template <typename T> Node<T> *AVLTreeSet<T>::RR(Node<T> *parent) {
   Node<T> *new_parent = parent->get_right(); // right가 parent의 위로 올라간다
   parent->set_right(new_parent->get_left());
   new_parent->set_left(parent);
+
+  //
+  parent->set_height(UpdateHeight(parent));
+  new_parent->set_height(UpdateHeight(new_parent));
+
+  //
+  parent->set_sub_size(UpdateSubSize(parent));
+  new_parent->set_sub_size(UpdateSubSize(new_parent));
+
   return new_parent;
 }
 
@@ -65,6 +72,15 @@ template <typename T> Node<T> *AVLTreeSet<T>::LL(Node<T> *parent) {
   Node<T> *new_parent = parent->get_left();
   parent->set_left(new_parent->get_right());
   new_parent->set_right(parent);
+
+  //
+  parent->set_height(UpdateHeight(parent));
+  new_parent->set_height(UpdateHeight(new_parent));
+
+  //
+  parent->set_sub_size(UpdateSubSize(parent));
+  new_parent->set_sub_size(UpdateSubSize(new_parent));
+
   return new_parent;
 }
 
@@ -102,8 +118,8 @@ template <typename T> Node<T> *AVLTreeSet<T>::LR(Node<T> *parent) {
 template <typename T> Node<T> *AVLTreeSet<T>::Balancing(Node<T> *node) {
   int height_difference = HeightDiff(node);
 
-  if (height_difference > 1) {            // LL or LR
-    if (HeightDiff(node->get_left()) > 0) // LL
+  if (height_difference > 1) {             // LL or LR
+    if (HeightDiff(node->get_left()) >= 0) // LL
       return LL(node);
     else
       return LR(node);
@@ -112,6 +128,10 @@ template <typename T> Node<T> *AVLTreeSet<T>::Balancing(Node<T> *node) {
       return RL(node);
     else
       return RR(node);
+  }
+  if (node != nullptr) {
+    node->set_height(UpdateHeight(node));
+    node->set_sub_size(UpdateSubSize(node));
   }
   return node;
 }
@@ -124,8 +144,7 @@ template <typename T> Node<T> *AVLTreeSet<T>::Balancing(Node<T> *node) {
  * @return Node<T>* 해당 노드 반환, 없을 시 NULL 반환
  *
  * type T에 대한 비교 연산자 '==' 과 '>' 의 오버라이딩을 해당 클래스에게
- * 전임하면서 확장성을 확보합니다. 이번 채점 서버에선 int 형에 대한 set 사용만
- * 다루므로 별도의 오버라이딩이 필요 없을 것입니다.
+ * 전임하면서 확장성을 확보합니다.
  */
 template <typename T> Node<T> *AVLTreeSet<T>::Search(T arg) {
   Node<T> *curN = this->get_root();
@@ -137,39 +156,38 @@ template <typename T> Node<T> *AVLTreeSet<T>::Search(T arg) {
   return nullptr;
 }
 
-// // tree에 삽입하는 함수
-// int AVLTree::Insert(int arg) {
-//   Node *node = new Node();
-//   node->key_ = arg;
-//   if (this->root_ == nullptr) {
-//     this->root_ = node;
-//     return;
-//   }
+template <typename T> void AVLTreeSet<T>::Inorder(Node<T> *node) {
+  if (!node) {
+    return;
+  }
+  Inorder(node->get_left());
+  cout << node->get_key() << ' ';
+  Inorder(node->get_right());
+}
 
-//   Node *grand_parent_node = nullptr;
-//   Node *parent_node = nullptr;
-//   Node *current_node = this->root_;
+template <typename T> void AVLTreeSet<T>::debug() {
+  cout << "Inorder Traversal : ";
+  Inorder(this->get_root());
+  cout << "\n";
+  return;
+}
 
-//   while (current_node != nullptr) {
-//     // 현재 노드의 값보다 크면 오른쪽으로 내려가고 작으면 왼쪽으로 내려간다.
-//     if (arg > current_node->key_) {
-//       grand_parent_node = parent_node;
-//       parent_node = current_node;
-//       current_node = current_node->right_;
-//     } else {
-//       grand_parent_node = parent_node;
-//       parent_node = current_node;
-//       current_node = current_node->right_;
-//     }
-//   }
-
-//   if (arg > parent_node->key_) {
-//     parent_node->right_ = node;
-//   } else {
-//     parent_node->left_ = node;
-//   }
-
-//   Balancing(grand_parent_node);
-// }
-
-// int AVLTree::Erase(int arg) {}
+template <typename T> void AVLTreeSet<T>::debugBFS() {
+  queue<pair<Node<T> *, int>> q;
+  q.emplace(this->get_root(), 0);
+  while (!q.empty()) {
+    Node<T> *curN = q.front().first;
+    int depth = q.front().second;
+    int height = curN->get_height();
+    int sub_size = curN->get_sub_size();
+    q.pop();
+    cout << curN->get_key() << " | " << depth << " | " << height << " | "
+         << sub_size << '\n';
+    if (curN->get_left() != nullptr) {
+      q.emplace(curN->get_left(), depth + 1);
+    }
+    if (curN->get_right() != nullptr) {
+      q.emplace(curN->get_right(), depth + 1);
+    }
+  }
+}

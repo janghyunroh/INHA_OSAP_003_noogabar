@@ -34,8 +34,11 @@ template <typename T> int AVLTreeSet<T>::Rank(T arg) {
   Node<T> *curN = this->get_root();
   int cnt = 0;
   while (curN != nullptr) {
-    if (curN->get_key() <= arg) {
-      cnt += GetTreeSize(curN->get_left()) + 1;
+    if (curN->get_key() == arg) {
+      cnt += (curN->get_left() ? curN->get_left()->get_sub_size() : 0) + 1;
+      break;
+    } else if (curN->get_key() < arg) {
+      cnt += (curN->get_left() ? curN->get_left()->get_sub_size() : 0) + 1;
       curN = curN->get_right();
     } else {
       curN = curN->get_left();
