@@ -82,6 +82,11 @@ public:
    */
   virtual int Erase(T arg) = 0;
 
+  	//디버깅용 함수
+	virtual void debug() = 0;		//AVLTreeSet에서 오버라이딩
+	virtual void debugRoot() = 0;	//TreeSet에서 오버라이딩
+	virtual void debugBFS() = 0;	//AVLTreeSet에서 오버라이딩
+
   // size는 set에서 처리하고 getter도 짧은 함수이므로 헤더에서 구현했습니다
   int get_size() { return size_; }
   void IncreaseSize() { size_++; }

@@ -31,6 +31,9 @@ public:
   } // 짧은 getter이므로 그냥 여기서 구현했습니다.
   void set_root(Node<T> *node) { root_ = node; }
 
+  //디버깅
+  void debugRoot() override { cout << "root: " << root_->get_key() << "\n"; }
+
 private:
   Node<T> *root_;
 };
