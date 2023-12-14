@@ -53,7 +53,7 @@ template <typename T> int AVLTreeSet<T>::Insert(T arg) {
 
   Node<T> *insert_position = this->get_root();
   // arg의 값을 갖는 노드가 이미 존재하는지 확인
-  if (Find(arg) > 0 || arg == insert_position->get_key()) {
+  if (Search(arg) != nullptr) {
     return -1;
   }
 
