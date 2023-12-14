@@ -45,7 +45,7 @@ int main() {
        * 최소 노드의 key 얻은 후 search
        * 찾은 노드의 key와 depth를 차례대로 출력
        */
-      if (cmd == "minumum") {
+      if (cmd == "minimum") {
         cin >> arg;
 
         int key = set->Minimum(arg);
