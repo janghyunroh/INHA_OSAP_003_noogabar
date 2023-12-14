@@ -46,13 +46,6 @@ int main() {
       if (cmd == "minumum") {
         cin >> arg;
 
-        // 찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버
-        // 테스트 케이스로는 들어올리 없는 input이라고 합니다.
-        // -> search로 검사하는 부분 삭제
-        // if (!set->Search(arg))
-        //   cout << "해당 노드가 없습니다.\n";
-        // else { }
-
         int key = set->Minimum(arg);
         int depth = set->Find(key);
         cout << key << " " << depth << '\n';
@@ -64,13 +57,6 @@ int main() {
        */
       else if (cmd == "maximum") {
         cin >> arg;
-
-        // 찾는 노드가 존재하지 않는 경우 - 교수님께 문의한 결과 채점 서버
-        // 테스트 케이스로는 들어올리 없는 input이라고 합니다.
-        // -> search로 검사하는 부분 삭제
-        // if (!set->Search(arg))
-        //   cout << "해당 노드가 없습니다.\n";
-        // else { }
 
         int key = set->Maximum(arg);
         int depth = set->Find(key);
@@ -103,9 +89,13 @@ int main() {
        */
       else if (cmd == "rank") {
         cin >> arg;
-        int depth = set->Find(arg);
         int rank = set->Rank(arg);
-        cout << depth << " " << rank << '\n';
+        if (rank == 0) {
+          cout << rank << '\n';
+        } else {
+          int depth = set->Find(arg);
+          cout << depth << " " << rank << '\n';
+        }
       }
 
       /**

@@ -40,7 +40,8 @@ template <typename T> int AVLTreeSet<T>::Erase(T arg) {
   int depth = this->Find(arg);
 
   // delete 수행(별도 함수)
-  this->set_root(Delete(this->get_root(), arg, nullptr));
+  this->set_root(Delete(this->get_root(), arg));
+  this->set_root(Balancing(this->get_root()));
 
   // size 감소
   this->DecreaseSize();
@@ -61,91 +62,55 @@ template <typename T> int AVLTreeSet<T>::Erase(T arg) {
  * @param arg
  * @return int
  */
-template <typename T> Node<T> Delete(Node<T> *root, T key, Node<T> *parent) {
+template <typename T> Node<T> *AVLTreeSet<T>::Delete(Node<T> *node, T key) {
 
-  // 노드가 존재하지 않을 경우
-  /**
-   * 재귀 수행 때문에 종단 노드에 도착하는 경우를 처리하기 위한 구문이며,
-   * 실제로 없는 노드를 삭제하는 경우는 상위 함수인 Erase에서 걸러지므로
-   * Size 문제는 걱정 없을 것으로 보입니다.
-   */
-  if (root == nullptr) {
-    return nullptr;
+  // 종단 도달 처리용
+  if (node == nullptr) {
+    return node;
   }
 
-  // 재귀적 탐색 - 좌측 서브 트리
-  if (root->get_key() > key) {
-    root->set_left(Delete(root->get_left(), key, root));
-    root = Balancing(root);
+  // 왼쪽으로
+  if (node->get_key() > key) {
+    node->set_left(Delete(node->get_left(), key));
   }
 
-  // 재귀적 탐색 - 우측 서브 트리
-  else if (root->get_key() < key) {
-    root->set_right(Delete(root->get_right(), key, root));
-    root = Balancing(root);
+  // 오른쪽으로
+  else if (node->get_key() < key) {
+    node->set_right(Delete(node->get_right(), key));
   }
 
-  // 삭제할 노드를 찾았을 경우
-  /**
-   * root: 현재 노드(삭제할 노드)
-   * parent: 현재 삭제할 노드의 부모 노드(대체할 노드와 연결하기 위해 참조 필요)
-   */
+  //찾은 경우
   else {
 
-    // 1. 삭제할 노드의 양단이 모두 없는 경우 - 단순 삭제
-    if ((root->get_left() == nullptr) && (root->get_right() == nullptr)) {
-      root = nullptr;
+    // 1. 양쪽 다 없는 경우
+    if ((node->get_left() == nullptr) && (node->get_right() == nullptr)) {
+      node = nullptr;
     }
 
-    // 2. 삭제할 노드의 좌측 서브 트리만 존재하는 경우
-    /**
-     * AVL Tree의 특성에 의해 삭제 노드의 좌측 서브 트리의 높이는 최대 1이다.
-     * 따라서 그냥 삭제 노드의 좌측 노드를 삭제 노드의 위치로 옮기면 된다.
-     * (nullptr인 경우도 문제 X)
-     */
-    else if (root->get_right() == nullptr) {
-      Node<T> *temp = root->get_left();
-      parent->set_left(temp);
-
+    // 2. 오른쪽만 없는 경우
+    else if (node->get_right() == nullptr) {
+      node = node->get_left();
     }
 
-    // 3. 삭제할 노드의 우측 서브 트리만 존재하는 경우
-    /**
-     * AVL Tree의 특성에 의해 삭제 노드의 우측 서브 트리의 높이는 최대 1이다.
-     * 따라서 그냥 삭제 노드의 우측 노드를 삭제 노드의 위치로 옮기면 된다.
-     */
-    else if (root->get_left() == nullptr) {
-      Node<T> *temp = root->get_right();
-      parent->set_right(temp);
-
+    // 3. 왼쪽만 없는 경우
+    else if (node->get_left() == nullptr) {
+      node = node->get_right();
     }
 
-    // 4. 삭제할 노드의 양쪽 서브 트리가 모두 존재하는 경우 - 우측 서브 트리에서
-    // 가장 작은 노드(후임자)를 찾아 대체
+    // 4. 양쪽 다 있는 경우 - 후임자 찾기
     else {
-      Node<T> *deleteNode = root;
 
-      // 우측 서브 트리에서 가장 작은 노드(후임자)를 찾아 대체
-      Node<T> *successor = root->get_right();
-      Node<T> *successorParent = root;
+      Node<T> *successor = node->get_right();
       while (successor->get_left() != nullptr) {
-        successorParent = successor;
         successor = successor->get_left();
       }
 
-      // 후임자의 부모 노드와 자식 노드를 연결
-      successor->set_left(deleteNode->get_left());
-      successor->set_right(deleteNode->get_right());
-
-      // 후임자의 기존 위치를 nullptr로 초기화
-      successorParent->set_left(nullptr);
-
-      // 후임자를 삭제 노드의 위치로 옮기기(후임자의 부모 노드가 삭제 노드의
-      // 부모 노드가 되도록)
-      root = successor;
-
-      delete deleteNode;
+      //후임자 복사 및 기존 후임자 제거
+      node->set_key(successor->get_key());
+      node->set_right(Delete(node->get_right(), successor->get_key()));
     }
   }
-  return root;
+
+  node = Balancing(node);
+  return node;
 }
