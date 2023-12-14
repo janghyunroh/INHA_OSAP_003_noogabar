@@ -55,8 +55,6 @@ template <typename T> int AVLTreeSet<T>::Erase(T arg) {
  * @brief 해당 노드를 루트로 하는 서브트리에서 arg값을 key로 갖는 노드를 삭제
  * 실질적인 삭제는 이 함수에서 이루어짐
  * 구조 재구성을 위해 find처럼 재귀적으로 호출
- *
- * ** parent 데이터를 Node에 추가하는 대신 parent를 인자로 받아서 사용 **
  * @tparam T
  * @param node
  * @param arg
@@ -69,12 +67,12 @@ template <typename T> Node<T> *AVLTreeSet<T>::Delete(Node<T> *node, T key) {
     return node;
   }
 
-  // 왼쪽으로
+  // 삭제할 노드가 왼쪽에 존재하는 경우
   if (node->get_key() > key) {
     node->set_left(Delete(node->get_left(), key));
   }
 
-  // 오른쪽으로
+  // 삭제할 노드가 오른쪽에 존재하는 경우
   else if (node->get_key() < key) {
     node->set_right(Delete(node->get_right(), key));
   }
@@ -82,22 +80,22 @@ template <typename T> Node<T> *AVLTreeSet<T>::Delete(Node<T> *node, T key) {
   //찾은 경우
   else {
 
-    // 1. 양쪽 다 없는 경우
+    // 1. 삭제할 노드의 양쪽 자식 노드가 모두 외부 노드인 경우
     if ((node->get_left() == nullptr) && (node->get_right() == nullptr)) {
       node = nullptr;
     }
 
-    // 2. 오른쪽만 없는 경우
+    // 2. 오른쪽만 외부 노드인 경우
     else if (node->get_right() == nullptr) {
       node = node->get_left();
     }
 
-    // 3. 왼쪽만 없는 경우
+    // 3. 왼쪽만 외부 노드인 경우
     else if (node->get_left() == nullptr) {
       node = node->get_right();
     }
 
-    // 4. 양쪽 다 있는 경우 - 후임자 찾기
+    // 4. 양쪽 다 내부 노드인 경우 - 후임자 찾기
     else {
 
       Node<T> *successor = node->get_right();
@@ -111,6 +109,7 @@ template <typename T> Node<T> *AVLTreeSet<T>::Delete(Node<T> *node, T key) {
     }
   }
 
+  //삭제 후 재구성
   node = Balancing(node);
   return node;
 }

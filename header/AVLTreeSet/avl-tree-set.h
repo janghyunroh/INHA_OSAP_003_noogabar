@@ -13,13 +13,13 @@
 #include "INHA_OSAP_003_noogabar/header/TreeSet/tree-set.h"
 
 /**
- * 사용자 정의 소멸자 / 사용자 정의 복사 생성자 / 사용자 정의 대입 연산자
- * 는 필요 없을 것으로 예상되므로 구현할 필요 없을 것 같습니다.
+ * @brief AVLTreeSet class
+ * AVLTree를 이용한 Set class 구현
+ *
+ *
  */
 template <typename T> class AVLTreeSet : public TreeSet<T> {
 public:
-  // 생성자는 기본 생성자만으로 충분할 것 같아 제거하였습니다.
-
   // Overriding fuinctions
   T Maximum(T arg) override;
   T Minimum(T arg) override;
@@ -33,10 +33,6 @@ public:
   bool Empty() override;
   int Erase(T arg) override;
 
-  //디버깅
-  void debug() override;
-  void debugBFS() override;
-
   // Original functions
   int Height(Node<T> *node);
   int HeightDiff(Node<T> *node);
@@ -46,10 +42,13 @@ public:
   Node<T> *LR(Node<T> *parent);
   Node<T> *Balancing(Node<T> *node);
   Node<T> *Search(T arg);
+
+  // Height 갱신 함수
   int UpdateHeight(Node<T> *node) {
     return 1 + max(Height(node->get_left()), Height(node->get_right()));
   }
 
+  // Sub Tree Size 갱신 함수
   int UpdateSubSize(Node<T> *node) {
     int left_size = node->get_left() ? node->get_left()->get_sub_size() : 0;
     int right_size = node->get_right() ? node->get_right()->get_sub_size() : 0;
@@ -57,10 +56,8 @@ public:
   }
 
   // 기타 추가 구현 함수
-  Node<T> *InsertN(Node<T> *node, T arg);
-  int GetTreeSize(Node<T> *node);
+  Node<T> *InsertRecursive(Node<T> *node, T arg);
   Node<T> *Delete(Node<T> *node, T key);
-  void Inorder(Node<T> *node);
 };
 
 #endif // !AVL_H

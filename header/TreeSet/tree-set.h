@@ -26,13 +26,8 @@
 template <typename T> class TreeSet : public Set<T> {
 public:
   TreeSet() : root_(nullptr) {}
-  Node<T> *get_root() const {
-    return root_;
-  } // 짧은 getter이므로 그냥 여기서 구현했습니다.
+  Node<T> *get_root() const { return root_; }
   void set_root(Node<T> *node) { root_ = node; }
-
-  //디버깅
-  void debugRoot() override { cout << "root: " << root_->get_key() << "\n"; }
 
 private:
   Node<T> *root_;
