@@ -12,10 +12,7 @@
 
 #include <gtest/gtest.h>
 
-/**
- * @brief set의 Minimum과 Maximum의 테스트를 위한 fixture
- *
- */
+//========== Test Fixture를 사용한 Test - Minimum & Maximum Test ==========
 class MinMaxTestFixture : public ::testing::Test {
 public:
   MinMaxTestFixture();
@@ -27,27 +24,18 @@ protected:
   Set<int> *set_;
 };
 
-/**
- * @brief Set의 생성자 함수의 테스트를 위한 함수
- *
- */
+// Fixture 생성자
 MinMaxTestFixture::MinMaxTestFixture() { std::cout << "Constructor called\n"; }
 
-/**
- * @brief Set의 소멸자 함수의 테스트를 위한 함수
- *
- */
+// Fixture 소멸자
 MinMaxTestFixture::~MinMaxTestFixture() { std::cout << "Destructor called\n"; }
 
-/**
- * @brief Minimum과 Maximum 테스트 시작 전 set에 적절한 원소들을 삽입하는 함수
- *
- */
+// SetUp - Minimum과 Maximum 테스트 시작 전 set에 적절한 원소들을 삽입하는 함수
 void MinMaxTestFixture::SetUp() {
   std::cout << "SetUp called\n";
   set_ = new AVLTreeSet<int>;
 
-  // 테스트 전 1, 5, 3, 9를 차례로 set에 삽입
+  // 테스트 전 1, 5, 3, 9, 4를 차례로 set에 삽입
   set_->Insert(1);
   set_->Insert(5);
   set_->Insert(3);
@@ -55,19 +43,13 @@ void MinMaxTestFixture::SetUp() {
   set_->Insert(4);
 }
 
-/**
- * @brief 각 테스트 종료 후 삽입했던 원소를 모두 지우는 함수
- *
- */
+// TearDown - Minimum과 Maximum 테스트 종료 후 set을 삭제하는 함수
 void MinMaxTestFixture::TearDown() {
   std::cout << "TearDown called\n";
   delete set_;
 }
 
-/**
- * @brief 각 노드의 key를 인자로 넣었을 때 Minimum 함수 테스트
- *
- */
+// Minumum Tests
 TEST_F(MinMaxTestFixture, TestMin) {
   // key가 5, 3인 노드가 root인 서브 트리의 leftmost 노드의 key 값의 기대값은
   // 각각 4, 1
@@ -81,10 +63,7 @@ TEST_F(MinMaxTestFixture, TestMin) {
   EXPECT_DEATH(set_->Minimum(10), "");
 }
 
-/**
- * @brief 각 노드의 key를 인자로 넣었을 때 Maximum 함수 테스트
- *
- */
+// Maximum Tests
 TEST_F(MinMaxTestFixture, TestMax) {
   // key가 5, 3ㄹ인 노드가 root인 서브 트리의 rightmost 노드의 key 값의 기대값은
   // 9
