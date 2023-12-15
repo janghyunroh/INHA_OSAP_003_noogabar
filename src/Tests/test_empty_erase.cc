@@ -5,10 +5,12 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
-#include <gtest/gtest.h>
+#include "../../header/AVLTreeSet/avl-tree-set.h"
+
 #include <iostream>
 #include <stdexcept>
+
+#include <gtest/gtest.h>
 
 //========== Test Fixture를 사용하지 않은 Test - Empty Test ==========
 
@@ -44,17 +46,13 @@ protected:
  * @brief Set의 생성자 함수의 테스트를 위한 함수
  *
  */
-EraseTestFixture::EraseTestFixture() {
-  std::cout << "Constructor called\n";
-}
+EraseTestFixture::EraseTestFixture() { std::cout << "Constructor called\n"; }
 
 /**
  * @brief Set의 소멸자 함수의 테스트를 위한 함수
  *
  */
-EraseTestFixture::~EraseTestFixture() {
-  std::cout << "Destructor called\n";
-}
+EraseTestFixture::~EraseTestFixture() { std::cout << "Destructor called\n"; }
 
 /**
  * SetUp - 원소 삽입
@@ -86,13 +84,14 @@ TEST_F(EraseTestFixture, TestErase) {
   EXPECT_EQ(0, set_->Erase(4));
 }
 
-//========== value-parameterized Test Fixture를 사용한 Test - Empty % Erase Test ==========
-class EmptyEraseTestFixture : public ::testing::TestWithParam<std::tuple<int, bool>> {
-  public:
-  protected:
-    Set<int> *set_;
+//========== value-parameterized Test Fixture를 사용한 Test - Empty % Erase Test
+//==========
+class EmptyEraseTestFixture
+    : public ::testing::TestWithParam<std::tuple<int, bool>> {
+public:
+protected:
+  Set<int> *set_;
 };
-
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);

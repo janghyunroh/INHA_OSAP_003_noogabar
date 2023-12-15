@@ -10,7 +10,7 @@
 #ifndef AVL_H
 #define AVL_H
 
-#include "INHA_OSAP_003_noogabar/header/TreeSet/tree-set.h"
+#include "../TreeSet/tree-set.h"
 
 /**
  * @brief AVLTreeSet class
@@ -45,7 +45,9 @@ public:
 
   // Height 갱신 함수
   int UpdateHeight(Node<T> *node) {
-    return 1 + max(Height(node->get_left()), Height(node->get_right()));
+    return 1 + (Height(node->get_left()) > Height(node->get_right())
+                    ? Height(node->get_left())
+                    : Height(node->get_right()));
   }
 
   // Sub Tree Size 갱신 함수
