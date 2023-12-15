@@ -7,7 +7,7 @@
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 // 담당자: 노장현
 
-#include "header/AVLTreeSet/avl-tree-set.h"
+#include "AVLTreeSet/avl-tree-set.h"
 
 /**
  * @brief 해당 Set이 비어있는지 여부를 반환

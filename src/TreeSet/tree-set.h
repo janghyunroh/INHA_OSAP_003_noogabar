@@ -6,11 +6,11 @@
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 
-#ifndef INHA_OSAP_003_NOOGABAR_HEADER_TREE_SET_H
-#define INHA_OSAP_003_NOOGABAR_HEADER_TREE_SET_H
+#ifndef INHA_OSAP_003_NOOGABAR_TREESET_TREE_SET_H
+#define INHA_OSAP_003_NOOGABAR_TREESET_TREE_SET_H
 
-#include "header/Node/node.h"
-#include "header/Set/set.h"
+#include "Node/node.h"
+#include "Set/set.h"
 
 /**
  * @brief Set과 AVLTreeSet 사이의 중간 클래스

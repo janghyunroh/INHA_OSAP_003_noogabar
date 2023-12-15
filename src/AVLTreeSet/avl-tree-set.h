@@ -7,10 +7,10 @@
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 
-#ifndef INHA_OSAP_003_NOOGABAR_HEADER_AVL_H
-#define INHA_OSAP_003_NOOGABAR_HEADER_AVL_H
+#ifndef INHA_OSAP_003_NOOGABAR_AVLTREESET_AVL_H
+#define INHA_OSAP_003_NOOGABAR_AVLTREESET_AVL_H
 
-#include "header/TreeSet/tree-set.h"
+#include "TreeSet/tree-set.h"
 
 /**
  * @brief AVLTreeSet class

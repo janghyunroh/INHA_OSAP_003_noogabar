@@ -28,8 +28,8 @@
  *
  */
 
-#ifndef INHA_OSAP_003_NOOGABAR_HEADER_SET_H
-#define INHA_OSAP_003_NOOGABAR_HEADER_SET_H
+#ifndef INHA_OSAP_003_NOOGABAR_SET_SET_H
+#define INHA_OSAP_003_NOOGABAR_SET_SET_H
 
 template <typename T> class Set {
 public:

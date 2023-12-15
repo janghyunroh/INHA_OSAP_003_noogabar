@@ -7,7 +7,7 @@
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 // 담당자: 이정현
 
-#include "header/AVLTreeSet/avl-tree-set.h"
+#include "AVLTreeSet/avl-tree-set.h"
 
 /**
  * @brief Set의 크기를 반환하는 함수

@@ -7,7 +7,7 @@
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 // 담당자: 류지훈
 
-#include "header/AVLTreeSet/avl-tree-set.h"
+#include "AVLTreeSet/avl-tree-set.h"
 
 /**
  * @brief arg를 key 값으로 가진 노드를 root로 하는 서브 트리 내에서 최소 key를

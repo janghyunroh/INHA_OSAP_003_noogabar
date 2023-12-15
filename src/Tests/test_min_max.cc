@@ -5,7 +5,7 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-#include "header/AVLTreeSet/avl-tree-set.h"
+#include "AVLTreeSet/avl-tree-set.h"
 
 #include <iostream>
 #include <stdexcept>

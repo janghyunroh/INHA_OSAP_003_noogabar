@@ -6,7 +6,7 @@
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 
-#include "header/AVLTreeSet/avl-tree-set.h"
+#include "AVLTreeSet/avl-tree-set.h"
 
 using namespace std;
 
