@@ -5,10 +5,9 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-
-#include "../../header/AVLTreeSet/avl-tree-set.h"
-
 // 담당자: 이정현
+
+#include "header/AVLTreeSet/avl-tree-set.h"
 
 /**
  * @brief Set의 크기를 반환하는 함수
