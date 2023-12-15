@@ -6,8 +6,8 @@
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef INHA_OSAP_003_NOOGABAR_NODE_NODE_H
+#define INHA_OSAP_003_NOOGABAR_NODE_NODE_H
 
 /**
  * @brief TreeSet 내부에서 사용할 Node class
