@@ -5,7 +5,7 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-#include "../../header/AVLTreeSet/avl-tree-set.h"
+#include "AVLTreeSet/avl-tree-set.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -18,11 +18,11 @@
 TEST(EmptyEraseTest, TestEmpty) {
   Set<int> *set = new AVLTreeSet<int>;
 
-  EXPECT_EQ(set->Empty(), true);
+  EXPECT_EQ(true, set->Empty());
   set->Insert(1);
-  EXPECT_EQ(set->Empty(), false);
+  EXPECT_EQ(false, set->Empty());
   set->Erase(1);
-  EXPECT_EQ(set->Empty(), true);
+  EXPECT_EQ(true, set->Empty());
 }
 
 //========== Test Fixture를 사용한 Test - Erase Test ==========

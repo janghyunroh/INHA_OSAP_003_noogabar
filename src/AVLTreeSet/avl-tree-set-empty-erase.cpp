@@ -5,10 +5,9 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-
-#include "../../header/AVLTreeSet/avl-tree-set.h"
-
 // 담당자: 노장현
+
+#include "AVLTreeSet/avl-tree-set.h"
 
 /**
  * @brief 해당 Set이 비어있는지 여부를 반환

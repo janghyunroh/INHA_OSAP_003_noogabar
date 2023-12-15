@@ -14,7 +14,7 @@
  *
  */
 
-#include "../../header/AVLTreeSet/avl-tree-set.h"
+#include "header/AVLTreeSet/avl-tree-set.h"
 
 #include <iostream>
 
