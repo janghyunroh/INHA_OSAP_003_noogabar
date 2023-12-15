@@ -12,98 +12,58 @@
 
 #include <gtest/gtest.h>
 
-/**
- * @brief set이 비어있는 경우 Find를 확인하는 함수
- *
- */
-TEST(InsertTest, TestEmptySet) {
+//========== Test Fixture를 사용하지 않은 Test - Empty Test ==========
+
+// Set의 Find를 위한 Test
+TEST(FindTest, TestFindOnNullSet) {
   Set<int> *set = new AVLTreeSet<int>;
 
-  // set_이 비어있어서 root노드가 되므로 기댓값은 0
-  EXPECT_EQ(0, set->Insert(1));
-  // root노드의 right에 삽입되므로 기댓값은 1
-  EXPECT_EQ(1, set->Insert(4));
-  // balancing 함수에 의해 rotation되므로 기댓값은 1
-  EXPECT_EQ(1, set->Insert(5));
-  EXPECT_EQ(2, set->Insert(6));
-  EXPECT_EQ(2, set->Insert(7));
-  EXPECT_EQ(1, set->Insert(2));
-  EXPECT_EQ(2, set->Insert(3));
-  EXPECT_EQ(3, set->Insert(8));
-  EXPECT_EQ(3, set->Insert(9));
-  EXPECT_EQ(3, set->Insert(10));
+  EXPECT_EQ(0, set->Find(1));
 }
 
-/**
- * @brief set의 find와 insert의 테스트를 위한 fixture
- *
- */
-class FindInsertTestFixture : public ::testing::Test {
-public:
-  FindInsertTestFixture();
-  virtual ~FindInsertTestFixture();
-  void SetUp() override;
-  void TearDown() override;
+TEST(FindTest, TestFindOnOneElementSet) {
+  Set<int> *set = new AVLTreeSet<int>;
+  set->Insert(1);
 
+  EXPECT_EQ(0, set->Find(1));
+}
+
+TEST(FindTest, TestFindOnSeveralSet) {
+  Set<int> *set = new AVLTreeSet<int>;
+  set->Insert(1);
+  set->Insert(2);
+  set->Insert(3);
+  set->Insert(4);
+
+  EXPECT_EQ(2, set->Find(4));
+}
+
+//========== Parameterized Test Fixture를 사용한 Test - Insert Test ==========
+
+class InsertTestFixture
+    : public ::testing::TestWithParam<std::tuple<int, int>> {
+public:
 protected:
   Set<int> *set_;
 };
 
-/**
- * @brief Set의 생성자 함수의 테스트를 위한 함수
- *
- */
-FindInsertTestFixture::FindInsertTestFixture() {
-  std::cout << "Constructor called\n";
+TEST_P(InsertTestFixture, TestInsertOnce) {
+  std::tuple<int, int> param = GetParam();
+  int arg = std::get<0>(param);
+  int expected = std::get<1>(param);
+  std::cout << "TestInsertOnce called with arg = " << arg
+            << " expected value = " << expected << '\n';
+  int actual = set_->Insert(arg);
+  EXPECT_EQ(expected, actual);
 }
 
-/**
- * @brief Set의 소멸자 함수의 테스트를 위한 함수
- *
- */
-FindInsertTestFixture::~FindInsertTestFixture() {
-  std::cout << "Destructor called\n";
-}
-
-/**
- * @brief find 테스트 시작 전 set에 적절한 원소들을 삽입하는 함수
- *
- */
-void FindInsertTestFixture::SetUp() {
-  std::cout << "SetUp called\n";
-  set_ = new AVLTreeSet<int>;
-
-  // 테스트 전 1, 5, 3, 9를 차례로 set에 삽입
-  set_->Insert(1);
-  set_->Insert(2);
-  set_->Insert(3);
-  set_->Insert(4);
-  set_->Insert(5);
-  set_->Insert(6);
-}
-
-/**
- * @brief 각 테스트 종료 후 삽입했던 원소를 모두 지우는 함수
- *
- */
-void FindInsertTestFixture::TearDown() {
-  std::cout << "TearDown called\n";
-  delete set_;
-}
-
-/**
- * @brief set에 원소가 있을 때 size 함수 테스트
- *
- */
-TEST_F(FindInsertTestFixture, TestFind) {
-  // set에 15의 값을 갖는 노드는 없으므로 기댓값 0
-  EXPECT_EQ(0, set_->Find(15));
-  EXPECT_EQ(2, set_->Find(1));
-  EXPECT_EQ(1, set_->Find(2));
-  EXPECT_EQ(2, set_->Find(3));
-  EXPECT_EQ(1, set_->Find(5));
-  EXPECT_EQ(2, set_->Find(6));
-}
+INSTANTIATE_TEST_CASE_P(
+    InsertTest, InsertTestFixture,
+    ::testing::Values(std::make_tuple(1, 0), std::make_tuple(2, 1),
+                      std::make_tuple(3, 1), std::make_tuple(4, 2),
+                      std::make_tuple(5, 2), std::make_tuple(6, 2),
+                      std::make_tuple(7, 2), std::make_tuple(8, 3),
+                      std::make_tuple(9, 3), std::make_tuple(10, 3)));
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
