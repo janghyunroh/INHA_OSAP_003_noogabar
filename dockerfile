@@ -4,8 +4,7 @@ RUN apt update
 RUN apt install -y gcc
 
 RUN mkdir /noogabar
-ADD AVLTreeSet ./AVLTreeSet
-ADD header ./header
-ADD Main ./Main
-ADD Tests ./Tests
+ADD src ./src
+ADD mainApp ./
 
+CMD [ "./mainApp" ]
