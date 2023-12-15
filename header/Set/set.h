@@ -6,6 +6,28 @@
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
 
+/**
+ * @brief Set class
+ * 최종적으로 main에서 사용하게 될 Set class
+ *
+ * Set class는 다음과 같은 기능을 제공합니다.
+ * 1. Set의 원소 개수 반환
+ * 2. Set이 비어있는지 아닌지 확인
+ * 3. Set에 존재하는 arg값을 key로 갖는 노드의 depth 반환
+ * 4. 신규 노드 생성하여 삽입
+ * 5. 특정 노드의 rank 계산 함수
+ * 6. 특정 노드 삭제
+ *
+ * Set class는 Tree를 이용한 Set과 Hash를 이용한 Set으로 구분됩니다.
+ * Tree를 이용한 Set은 TreeSet class를 상속받고
+ * Hash를 이용한 Set은 HashSet class를 상속받습니다.
+ *
+ * 최종적으로 사용할 AVLTreeSet class는 TreeSet class를 상속받습니다.
+ *
+ * Main에서 사용할 Set class 객체는 AVLTreeSet class 객체를 사용합니다.
+ *
+ */
+
 #ifndef SET_H
 #define SET_H
 
@@ -82,17 +104,13 @@ public:
    */
   virtual int Erase(T arg) = 0;
 
-  	//디버깅용 함수
-	virtual void debug() = 0;		//AVLTreeSet에서 오버라이딩
-	virtual void debugRoot() = 0;	//TreeSet에서 오버라이딩
-	virtual void debugBFS() = 0;	//AVLTreeSet에서 오버라이딩
-
   // size는 set에서 처리하고 getter도 짧은 함수이므로 헤더에서 구현했습니다
-  int get_size() { return size_; }
+  int get_size() const { return size_; }
   void IncreaseSize() { size_++; }
   void DecreaseSize() {
-    if (size_ > 0)
+    if (size_ > 0) {
       size_--;
+    }
   }
 
 private:

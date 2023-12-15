@@ -5,10 +5,12 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
-#include <gtest/gtest.h>
+#include "../../header/AVLTreeSet/avl-tree-set.h"
+
 #include <iostream>
 #include <stdexcept>
+
+#include <gtest/gtest.h>
 
 /**
  * @brief set이 비어있는 경우 Find를 확인하는 함수

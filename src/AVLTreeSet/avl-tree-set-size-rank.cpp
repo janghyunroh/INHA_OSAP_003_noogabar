@@ -5,7 +5,8 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
+
+#include "../../header/AVLTreeSet/avl-tree-set.h"
 
 // 담당자: 이정현
 
@@ -31,37 +32,20 @@ template <typename T> int AVLTreeSet<T>::Rank(T arg) {
     return 0;
   }
   // left child를 root로 하는 서브크기가 곧 해당 노드보다 작은 원소의 개수
-  Node<T> *curN = this->get_root();
+  Node<T> *cur_node = this->get_root();
   int cnt = 0;
-  while (curN != nullptr) {
-    if (curN->get_key() == arg) {
-      cnt += (curN->get_left() ? curN->get_left()->get_sub_size() : 0) + 1;
+  while (cur_node != nullptr) {
+    if (cur_node->get_key() == arg) {
+      cnt +=
+          (cur_node->get_left() ? cur_node->get_left()->get_sub_size() : 0) + 1;
       break;
-    } else if (curN->get_key() < arg) {
-      cnt += (curN->get_left() ? curN->get_left()->get_sub_size() : 0) + 1;
-      curN = curN->get_right();
+    } else if (cur_node->get_key() < arg) {
+      cnt +=
+          (cur_node->get_left() ? cur_node->get_left()->get_sub_size() : 0) + 1;
+      cur_node = cur_node->get_right();
     } else {
-      curN = curN->get_left();
+      cur_node = cur_node->get_left();
     }
   }
-  return cnt;
-}
-
-//====================기타 구현 함수====================
-/**
- * @brief node를 root로 하는 서브트리의 size를 구하는 함수
- *
- * @tparam T
- * @param node
- * @param x
- * @return int
- */
-template <typename T> int AVLTreeSet<T>::GetTreeSize(Node<T> *node) {
-  if (!node) {
-    return 0;
-  }
-  int cnt = 1;
-  cnt += GetTreeSize(node->get_left());
-  cnt += GetTreeSize(node->get_right());
   return cnt;
 }

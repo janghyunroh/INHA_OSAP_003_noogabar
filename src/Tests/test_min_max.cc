@@ -5,10 +5,12 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
-#include <gtest/gtest.h>
+#include "../../header/AVLTreeSet/avl-tree-set.h"
+
 #include <iostream>
 #include <stdexcept>
+
+#include <gtest/gtest.h>
 
 /**
  * @brief set의 Minimum과 Maximum의 테스트를 위한 fixture

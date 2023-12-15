@@ -5,7 +5,8 @@
 // http://www.apache.org/licenses/LICENSE-2.0
 
 // Copyright November 2023 Inha Univ. Open Source Project Team noogabar
-#include "INHA_OSAP_003_noogabar/header/AVLTreeSet/avl-tree-set.h"
+
+#include "../../header/AVLTreeSet/avl-tree-set.h"
 
 // 담당자: 류지훈
 
